@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  //hooks
+  const navigate = useNavigate();
+
   //state
   const [inputData, setInputData] = useState("");
 
@@ -8,6 +12,7 @@ export default function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setInputData("");
+    navigate(`/order/${inputData}`);
   };
 
   const handleChange = (e) => setInputData(e.target.value);
