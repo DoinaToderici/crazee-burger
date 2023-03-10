@@ -1,7 +1,13 @@
+import React from "react";
 import "./App.css";
+import Login from "./Pages/Login/Login";
 
 function App() {
-  return <div>Crazee burger title</div>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 
 export default App;
