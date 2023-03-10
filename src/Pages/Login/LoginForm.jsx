@@ -7,9 +7,10 @@ export default function LoginForm() {
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Bonjour ${inputData}`);
     setInputData("");
   };
+
+  const handleChange = (e) => setInputData(e.target.value);
 
   //affichage
   return (
@@ -23,7 +24,7 @@ export default function LoginForm() {
           placeholder="Entrez votre prénom..."
           required
           value={inputData}
-          onChange={(e) => setInputData(e.target.value)}
+          onChange={handleChange}
         />
         <button type="submit">Accéder à votre espace</button>
       </form>
