@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ContextUser } from "../../Context/ContextUser";
 
 export default function LoginForm() {
   //hooks
   const navigate = useNavigate();
+
+  //context
+  const { setUserName } = useContext(ContextUser);
 
   //state
   const [inputData, setInputData] = useState("");
@@ -13,6 +17,7 @@ export default function LoginForm() {
     e.preventDefault();
     setInputData("");
     navigate(`/order/${inputData}`);
+    setUserName(inputData);
   };
 
   const handleChange = (e) => setInputData(e.target.value);
