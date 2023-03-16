@@ -1,15 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
+  //hooks
+  const navigate = useNavigate();
+
   //state
   const [inputData, setInputData] = useState("");
 
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Bonjour ${inputData}`);
     setInputData("");
+    navigate(`/order/${inputData}`);
   };
+
+  const handleChange = (e) => setInputData(e.target.value);
 
   //affichage
   return (
@@ -23,7 +29,7 @@ export default function LoginForm() {
           placeholder="Entrez votre prénom..."
           required
           value={inputData}
-          onChange={(e) => setInputData(e.target.value)}
+          onChange={handleChange}
         />
         <button type="submit">Accéder à votre espace</button>
       </form>
