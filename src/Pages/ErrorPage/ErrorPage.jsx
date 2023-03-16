@@ -5,7 +5,7 @@ export default function ErrorPage() {
   const navigate = useNavigate();
   return (
     <div>
-      Error Page
+      <h2>Error Page</h2>
       <button onClick={() => navigate("/")}>
         Retourner vers la page d'accueil
       </button>

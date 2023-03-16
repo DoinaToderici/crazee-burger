@@ -1,13 +1,11 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { ContextUser } from "../../Context/ContextUser";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function OrderPage() {
   //hooks
   const navigate = useNavigate();
 
-  //context
-  const { userName } = useContext(ContextUser);
+  //params from url
+  const { userName } = useParams();
 
   return (
     <div>
