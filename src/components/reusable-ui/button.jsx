@@ -13,6 +13,7 @@ export default function Button({ label, Icon, ...extraProps }) {
 }
 
 const PrimaryButtonStyled = styled.button`
+  font-family: "Arial";
   width: 100%;
   border: 1px solid red;
   display: inline-flex;

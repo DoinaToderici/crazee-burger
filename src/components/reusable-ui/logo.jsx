@@ -6,9 +6,9 @@ import { theme } from "../../theme";
 export default function Logo() {
   return (
     <LogoStyled>
-      <span>Crazee</span>
+      <h1>Crazee</h1>
       <img src={logo} alt="Logo" />
-      <span>Burger</span>
+      <h1>Burger</h1>
     </LogoStyled>
   );
 }
@@ -16,21 +16,25 @@ export default function Logo() {
 const LogoStyled = styled.div`
   display: flex;
   align-items: center;
-  text-align: center;
+  transform: scale(2.5);
 
-  span {
-    font-family: ${theme.fonts.family.title};
-    font-style: normal;
-    font-weight: ${theme.fonts.weights.bold};
-    font-size: 110px;
-    line-height: 115px;
-    letter-spacing: ${theme.spacing.sm};
-    text-transform: uppercase;
+  h1 {
+    display: inline;
+    text-align: center;
     color: ${theme.colors.primary};
+    font-size: ${theme.fonts.size.P4};
+    line-height: 1em;
+    font-weight: ${theme.fonts.weights.bold};
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: "Amatic SC", cursive;
   }
 
   img {
-    width: 200px;
-    height: 150px;
+    object-fit: contain;
+    object-position: center;
+    height: 60px;
+    width: 80px;
+    margin: 0 ${theme.gridUnit / 2}px;
   }
 `;

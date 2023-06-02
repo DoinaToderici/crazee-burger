@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HiUserCircle } from "react-icons/hi";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import styled from "styled-components";
+import { theme } from "../../../theme";
+import { IoChevronForwardOutline } from "react-icons/io5";
 import Button from "../../reusable-ui/button";
 import Input from "../../reusable-ui/input";
 
@@ -24,24 +26,62 @@ export default function LoginForm() {
   //affichage
   return (
     <>
-      <h1>Bienvenue chez nous </h1>
-      <br />
-      <h2>Connectez-vous</h2>
-      <form onSubmit={handleSubmit}>
-        <Input
-          value={inputData}
-          onChange={handleChange}
-          Icon={<HiUserCircle className="icon" />}
-          placeholder="Entrez votre prénom"
-          type="text"
-          required
-        />
-        <Button
-          label="Accéder à votre espace"
-          type="submit"
-          icon={<MdOutlineKeyboardArrowRight />}
-        />
-      </form>
+      <LoginFormStyled action="submit" onSubmit={handleSubmit}>
+        <div>
+          <h1>Bienvenue chez nous </h1>
+          <hr />
+          <h2>Connectez-vous</h2>
+        </div>
+        <div>
+          <Input
+            value={inputData}
+            onChange={handleChange}
+            Icon={<HiUserCircle className="icon" />}
+            placeholder="Entrez votre prénom"
+            type="text"
+            required
+          />
+          <Button
+            label="Accéder à votre espace"
+            type="submit"
+            Icon={<IoChevronForwardOutline />}
+          />
+        </div>
+      </LoginFormStyled>
     </>
   );
 }
+
+const LoginFormStyled = styled.form`
+  text-align: center;
+  max-width: 500px;
+  min-width: 400px;
+  margin: 0px auto;
+  padding: 40px ${theme.spacing.lg};
+  border-radius: ${theme.borderRadius.round};
+  font-family: "Amatic SC", cursive;
+
+  hr {
+    border: 2px solid ${theme.colors.primary};
+    margin-bottom: ${theme.gridUnit * 5}px;
+  }
+
+  h1 {
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P5};
+  }
+
+  h2 {
+    margin: 20px 10px 10px;
+    color: ${theme.colors.white};
+    font-size: ${theme.fonts.size.P4};
+  }
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: ${theme.fonts.size.P0};
+    margin-left: 10px;
+  }
+`;

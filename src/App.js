@@ -5,6 +5,7 @@ import LoginPage from "./components/Pages/Login/LoginPage";
 import OrderPage from "./components/Pages/OrderPage/OrderPage";
 import ErrorPage from "./components/Pages/ErrorPage/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

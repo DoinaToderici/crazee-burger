@@ -14,6 +14,7 @@ export default function Input({ onChange, Icon, ...extraProps }) {
 }
 
 const InputStyled = styled.div`
+  font-family: "Arial";
   background-color: #fff;
   border-radius: ${theme.borderRadius.round};
   display: flex;
