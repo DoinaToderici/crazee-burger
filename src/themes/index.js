@@ -29,6 +29,10 @@ const spacing = {
 };
 
 const fonts = {
+  family: {
+    title: `'Amatic SC', cursive`,
+    text: `'Open Sans', sans-serif`,
+  },
   size: {
     XXXS: "8px",
     XXS: "10px",
