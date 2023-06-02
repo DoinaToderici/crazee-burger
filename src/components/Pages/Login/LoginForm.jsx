@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { HiUserCircle } from "react-icons/hi";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import Button from "../../reusable-ui/button";
+import Input from "../../reusable-ui/input";
 
 export default function LoginForm() {
   //hooks
@@ -24,14 +28,19 @@ export default function LoginForm() {
       <br />
       <h2>Connectez-vous</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Entrez votre prénom..."
-          required
+        <Input
           value={inputData}
           onChange={handleChange}
+          Icon={<HiUserCircle className="icon" />}
+          placeholder="Entrez votre prénom"
+          type="text"
+          required
         />
-        <button type="submit">Accéder à votre espace</button>
+        <Button
+          label="Accéder à votre espace"
+          type="submit"
+          icon={<MdOutlineKeyboardArrowRight />}
+        />
       </form>
     </>
   );

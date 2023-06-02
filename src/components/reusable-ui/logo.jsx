@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../images/logo-orange.png";
 import styled from "styled-components";
-import { theme } from "../../themes";
+import { theme } from "../../theme";
 
 export default function Logo() {
   return (
