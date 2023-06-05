@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 export default function OrderPage() {
   //hooks
@@ -8,15 +9,15 @@ export default function OrderPage() {
   const { userName } = useParams();
 
   return (
-    <div>
+    <div className="container">
       <h1>Bonjour {userName}</h1>
-      <button
+      <PrimaryButton
+        label="Déconnexion"
         onClick={() => {
           navigate("/login");
         }}
-      >
-        Déconnexion
-      </button>
+        className="w-auto"
+      />
     </div>
   );
 }

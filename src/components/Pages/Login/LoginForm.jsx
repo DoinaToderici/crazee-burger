@@ -4,7 +4,7 @@ import { HiUserCircle } from "react-icons/hi";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import { IoChevronForwardOutline } from "react-icons/io5";
-import Button from "../../reusable-ui/button";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import Input from "../../reusable-ui/input";
 
 export default function LoginForm() {
@@ -41,7 +41,7 @@ export default function LoginForm() {
             type="text"
             required
           />
-          <Button
+          <PrimaryButton
             label="Accéder à votre espace"
             type="submit"
             Icon={<IoChevronForwardOutline />}
@@ -81,7 +81,7 @@ const LoginFormStyled = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: ${theme.fonts.size.P0};
+    font-size: ${theme.fonts.size.P2};
     margin-left: 10px;
   }
 `;

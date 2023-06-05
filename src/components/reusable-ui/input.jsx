@@ -15,7 +15,7 @@ export default function Input({ onChange, Icon, ...extraProps }) {
 
 const InputStyled = styled.div`
   font-family: "Arial";
-  background-color: #fff;
+  background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   display: flex;
   align-items: center;
@@ -23,7 +23,6 @@ const InputStyled = styled.div`
   margin: 18px 0;
 
   .icon {
-    font-size: ${theme.fonts.size.P0};
     margin-right: 8px;
     color: ${theme.colors.greySemiDark};
   }
@@ -31,13 +30,11 @@ const InputStyled = styled.div`
   input {
     border: none;
     outline: none;
-    font-size: ${theme.fonts.size.P0};
     color: ${theme.colors.dark};
     width: 100%;
 
-    &::placeholder {
-      background: ${theme.colors.white};
-      color: ${theme.colors.greyMedium};
-    }
+    background: ${theme.colors.white};
+    color: ${theme.colors.greyMedium};
+    font-size: ${theme.fonts.size.P0};
   }
 `;
