@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import Home from "./Pages/Home/Home";
-import LoginPage from "./Pages/Login/LoginPage";
-import OrderPage from "./Pages/OrderPage/OrderPage";
-import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import Home from "./components/Pages/Home/Home";
+import LoginPage from "./components/Pages/Login/LoginPage";
+import OrderPage from "./components/Pages/OrderPage/OrderPage";
+import ErrorPage from "./components/Pages/ErrorPage/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
