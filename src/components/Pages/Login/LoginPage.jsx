@@ -1,4 +1,4 @@
-import Logo from "../../reusable-ui/Logo";
+import Logo from "../../reusable-ui/logo";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import bgImage from "../../../images/burger-and-fries-background.jpg";

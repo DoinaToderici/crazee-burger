@@ -1,23 +1,30 @@
-import { useNavigate, useParams } from "react-router-dom";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import styled from "styled-components";
+import Main from "../../reusable-ui/Main";
+import NavBar from "../../reusable-ui/NavBar";
 
 export default function OrderPage() {
-  //hooks
-  const navigate = useNavigate();
-
   //params from url
-  const { userName } = useParams();
 
   return (
-    <div>
-      <h1>Bonjour {userName}</h1>
-      <PrimaryButton
-        label="Déconnexion"
-        onClick={() => {
-          navigate("/login");
-        }}
-        className="w-auto"
-      />
-    </div>
+    <OrderStyled>
+      <div className="container">
+        <NavBar />
+        <Main />
+      </div>
+    </OrderStyled>
   );
 }
+
+const OrderStyled = styled.div`
+  background: #ffa01b;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+  }
+`;
