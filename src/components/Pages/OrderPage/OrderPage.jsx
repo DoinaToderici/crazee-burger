@@ -9,7 +9,7 @@ export default function OrderPage() {
   const { userName } = useParams();
 
   return (
-    <div className="container">
+    <div>
       <h1>Bonjour {userName}</h1>
       <PrimaryButton
         label="Déconnexion"

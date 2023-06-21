@@ -1,4 +1,4 @@
-import Logo from "../../reusable-ui/logo";
+import Logo from "../../reusable-ui/Logo";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import bgImage from "../../../images/burger-and-fries-background.jpg";
@@ -6,7 +6,7 @@ import bgImage from "../../../images/burger-and-fries-background.jpg";
 export default function LoginPage() {
   return (
     <LoginPageStyled>
-      <Logo />
+      <Logo className="logo" />
       <LoginForm />
     </LoginPageStyled>
   );
@@ -22,4 +22,8 @@ const LoginPageStyled = styled.div`
   background-size: cover;
   background-position: center;
   background-blend-mode: darken;
+
+  .logo {
+    transform: scale(2.5);
+  }
 `;

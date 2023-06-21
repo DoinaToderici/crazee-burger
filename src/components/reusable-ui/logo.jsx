@@ -3,9 +3,9 @@ import logo from "../../images/logo-orange.png";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Logo() {
+export default function Logo({ ...extraProps }) {
   return (
-    <LogoStyled>
+    <LogoStyled {...extraProps}>
       <h1>Crazee</h1>
       <img src={logo} alt="Logo" />
       <h1>Burger</h1>
@@ -16,7 +16,7 @@ export default function Logo() {
 const LogoStyled = styled.div`
   display: flex;
   align-items: center;
-  transform: scale(2.5);
+  ///transform: scale(2.5); ==> on definie ça dans chaque component où Logo est appellé
 
   h1 {
     display: inline;
