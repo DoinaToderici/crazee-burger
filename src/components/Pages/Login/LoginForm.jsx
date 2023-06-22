@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { theme } from "../../../theme";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import Input from "../../reusable-ui/input";
+import Input from "../../reusable-ui/Input";
 
 export default function LoginForm() {
   //hooks
