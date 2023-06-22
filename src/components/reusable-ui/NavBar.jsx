@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/index";
 import { reloadPage } from "../../utils/window";
-import Logo from "./LogoBurger";
+import Logo from "./logo";
 import Profile from "./Profile";
 
 export default function NavBar() {
