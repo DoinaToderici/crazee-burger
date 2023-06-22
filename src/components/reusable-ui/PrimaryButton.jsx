@@ -14,7 +14,6 @@ export default function PrimaryButton({ label, Icon, ...extraProps }) {
 }
 
 const PrimaryButtonStyled = styled.button`
-  font-family: ${theme.fonts.family.default};
   width: 100%;
   justify-content: center;
   align-items: center;
