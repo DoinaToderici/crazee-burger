@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 import PrimaryButton from "./PrimaryButton";
 
-export default function Card({ title, imageSource, price }) {
-  const formatPrice = (Math.round(price * 100) / 100).toFixed(2);
-
+export default function Card({ title, imageSource, leftDescription }) {
   return (
     <CardStyled className="produit">
       <div className="image">
@@ -14,7 +12,7 @@ export default function Card({ title, imageSource, price }) {
         <div className="title">{title}</div>
         <div className="description">
           <div className="left-description">
-            <b>{formatPrice} €</b>
+            <b>{leftDescription}</b>
           </div>
           <div className="right-description">
             <PrimaryButton className="primary-button" label={"Ajouter"} />
