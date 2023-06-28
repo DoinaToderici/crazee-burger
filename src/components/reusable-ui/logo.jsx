@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../images/logo-orange.png";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
@@ -7,7 +6,7 @@ export default function Logo({ ...extraProps }) {
   return (
     <LogoStyled {...extraProps}>
       <h1>Crazee</h1>
-      <img src={logo} alt="Logo" />
+      <img src="/images/logo-orange.png" alt="Logo" />
       <h1>Burger</h1>
     </LogoStyled>
   );

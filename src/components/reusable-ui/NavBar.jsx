@@ -20,6 +20,7 @@ const NavBarStyled = styled.nav`
   background: ${theme.colors.white};
   border-radius: 15px 15px 0px 0px;
   padding: 1rem 2rem;
+  border-bottom: 1px solid ${theme.colors.greyLight};
 
   .logoNavBar {
     transform: initiale;
