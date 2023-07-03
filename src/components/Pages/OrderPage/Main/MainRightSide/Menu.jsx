@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { fakeMenu2 } from "../../fakeData";
-import { formatPrice } from "../../utils/maths";
-import AdminPanel from "./AdminPanel";
-import Card from "./Card";
+import { fakeMenu2 } from "../../../../../fakeData";
+import { formatPrice } from "../../../../../utils/maths";
+import Admin from "./Admin/Admin";
+import Card from "../../../../reusable-ui/Card";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
@@ -21,7 +21,7 @@ export default function Menu() {
             ></Card>
           );
         })}
-      <AdminPanel />
+      <Admin />
     </StyledMenu>
   );
 }

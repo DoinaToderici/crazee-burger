@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { theme } from "../../../../../../theme";
+import AdminTab from "./AdminTab";
 
 export default function AdminPanel() {
   return (
@@ -10,8 +12,9 @@ export default function AdminPanel() {
 }
 
 const AdminPanelStyled = styled.div`
+  height: 250px;
   width: 100vw;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  background: ${theme.colors.white};
+  border: 1px solid ${theme.colors.greyLight};
+  box-shadow: ${theme.shadows.subtle};
 `;

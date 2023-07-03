@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { theme } from "../../theme/index";
-import { reloadPage } from "../../utils/window";
-import Logo from "./logo";
+import { theme } from "../../../../theme/index";
+import { reloadPage } from "../../../../utils/window";
+import Logo from "../../../reusable-ui/logo";
 import NavbarRightSide from "./NavbarRightSide";
 
 export default function NavBar() {
