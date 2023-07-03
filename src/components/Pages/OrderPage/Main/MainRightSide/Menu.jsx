@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { fakeMenu2 } from "../../../../../fakeData";
 import { formatPrice } from "../../../../../utils/maths";
 import Admin from "./Admin/Admin";
 import Card from "../../../../reusable-ui/Card";
+import { AdminContext } from "../../../../Context/AdminContext";
 
 export default function Menu() {
   const [menu, setMenu] = useState(fakeMenu2);
+  const { isModeAdmin } = useContext(AdminContext);
 
   return (
     <StyledMenu>
@@ -21,7 +23,7 @@ export default function Menu() {
             ></Card>
           );
         })}
-      <Admin />
+      {isModeAdmin && <Admin />}
     </StyledMenu>
   );
 }
