@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { theme } from "../../theme/index";
 import { reloadPage } from "../../utils/window";
 import Logo from "./logo";
-import NavbarRightSideIncomplet from "./NavbarRightSideIncomplet";
+import NavbarRightSide from "./NavbarRightSide";
 
 export default function NavBar() {
   return (
     <NavBarStyled>
       <div className="d-flex align-items-center justify-content-between">
         <Logo className="logoNavBar" onClick={reloadPage} />
-        <NavbarRightSideIncomplet />
+        <NavbarRightSide />
       </div>
     </NavBarStyled>
   );
