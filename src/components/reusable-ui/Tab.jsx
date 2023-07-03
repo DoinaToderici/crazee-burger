@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Tab({ icon, label }) {
+export default function Tab({ icon, label, ...otherProps }) {
   return (
     <div>
-      <TabStyled>
+      <TabStyled className={otherProps.className}>
         {icon && <div className="icon">{icon}</div>}
         {label && <span className="label">{label}</span>}
       </TabStyled>

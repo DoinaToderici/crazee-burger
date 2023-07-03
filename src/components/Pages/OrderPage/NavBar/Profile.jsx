@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../../theme/index";
+import { AdminContext } from "../../../Context/AdminContext";
 
 export default function Profile() {
   const { userName } = useParams();
+  const { setIsModeAdmin } = useContext(AdminContext);
 
   return (
     <ProfileStyled>
@@ -13,7 +16,7 @@ export default function Profile() {
           Hey, <b>{userName}</b>
         </p>
         <Link to="/login">
-          <div className="description">
+          <div className="description" onClick={() => setIsModeAdmin(false)}>
             <small>Se déconnecter</small>
           </div>
         </Link>
