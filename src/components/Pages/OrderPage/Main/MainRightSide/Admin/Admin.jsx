@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { AdminContext } from "../../../../../Context/AdminContext";
 import AdminPanel from "./AdminPanel";
 import AdminTab from "./AdminTab";
 
 export default function Admin() {
+  const { collapsed } = useContext(AdminContext);
+
   return (
     <AdminStyled>
       <AdminTab />
-      <AdminPanel />
+      {!collapsed && <AdminPanel />}
     </AdminStyled>
   );
 }

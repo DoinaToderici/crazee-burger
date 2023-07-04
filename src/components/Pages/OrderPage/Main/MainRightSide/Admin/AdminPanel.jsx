@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
-import AdminTab from "./AdminTab";
 
 export default function AdminPanel() {
   return (

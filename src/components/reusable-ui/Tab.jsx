@@ -5,7 +5,7 @@ import { theme } from "../../theme";
 export default function Tab({ icon, label, ...otherProps }) {
   return (
     <div>
-      <TabStyled className={otherProps.className}>
+      <TabStyled className={otherProps.className} onClick={otherProps.onClick}>
         {icon && <div className="icon">{icon}</div>}
         {label && <span className="label">{label}</span>}
       </TabStyled>
@@ -31,6 +31,12 @@ const TabStyled = styled.div`
 
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
+
+  &.is-actif {
+    background: ${theme.colors.background_dark};
+    color: ${theme.colors.white};
+    border-color: ${theme.colors.background_dark};
+  }
 
   // border
   border-width: 1px 1px 2px 1px;
