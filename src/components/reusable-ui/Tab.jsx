@@ -32,7 +32,7 @@ const TabStyled = styled.div`
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
 
-  &.is-actif {
+  &.is-active {
     background: ${theme.colors.background_dark};
     color: ${theme.colors.white};
     border-color: ${theme.colors.background_dark};

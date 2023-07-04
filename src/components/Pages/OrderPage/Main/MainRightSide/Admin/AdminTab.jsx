@@ -1,22 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import Tab from "../../../../../reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { AiOutlinePlus } from "react-icons/ai";
-import { MdModeEditOutline } from "react-icons/md";
 import { AdminContext } from "../../../../../Context/AdminContext";
+import { tabsConfig } from "./tabs.Config";
 
 export default function AdminTab() {
-  const { collapsed, setCollapsed } = useContext(AdminContext);
+  const { collapsed, setCollapsed, currentTabSelected, setCurrentTabSelected } =
+    useContext(AdminContext);
+
+  const tabs = tabsConfig;
+
+  const selectTab = (tabSelected) => {
+    setCollapsed(false);
+    setCurrentTabSelected(tabSelected);
+  };
 
   return (
     <div className="d-flex">
       <Tab
         icon={collapsed ? <FiChevronUp /> : <FiChevronDown />}
-        className={!collapsed ? "is-actif" : ""}
         onClick={() => setCollapsed(!collapsed)}
+        className={collapsed ? "is-active" : ""}
       />
-      <Tab icon={<AiOutlinePlus />} label="Ajouter un produit" />
-      <Tab icon={<MdModeEditOutline />} label="Modifier un produit" />
+      {tabs.map(({ index, label, Icon }) => {
+        return (
+          <Tab
+            key={index}
+            index={index}
+            label={label}
+            icon={Icon}
+            onClick={() => selectTab(index)}
+            className={currentTabSelected === index ? "is-active" : ""}
+          />
+        );
+      })}
     </div>
   );
 }
