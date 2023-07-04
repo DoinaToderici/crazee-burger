@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./Profile";
-import ToggleButton from "./ToggleButton";
+import ToggleButton from "../../../reusable-ui/ToggleButton";
 import { toast } from "react-toastify";
 import { FaUserSecret } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
-import ToastAdmin from "../../utils/ToastAdmin";
+import ToastAdmin from "./ToastAdmin";
+import { AdminContext } from "../../../Context/AdminContext";
 
 export default function NavbarRightSide() {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
+
   const displayToastNotif = () => {
     if (!isModeAdmin) {
       toast.info("Mode admin activé", {
