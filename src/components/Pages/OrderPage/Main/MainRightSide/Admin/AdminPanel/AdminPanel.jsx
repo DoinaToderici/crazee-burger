@@ -9,9 +9,7 @@ export default function AdminPanel() {
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
-    <AdminPanelStyled>
-      <p>{tabSelected && tabSelected.Content}</p>
-    </AdminPanelStyled>
+    <AdminPanelStyled>{tabSelected && tabSelected.Content}</AdminPanelStyled>
   );
 }
 
@@ -20,4 +18,6 @@ const AdminPanelStyled = styled.div`
   background: ${theme.colors.greyLight};
   border: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
+
+  padding: 30px 5%;
 `;
