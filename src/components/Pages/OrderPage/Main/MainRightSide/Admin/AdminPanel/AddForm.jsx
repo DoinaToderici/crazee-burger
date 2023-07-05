@@ -1,14 +1,27 @@
-import React from "react";
-import Input from "../../../../../../reusable-ui/Input";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
+import React, { useContext } from "react";
 import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import styled from "styled-components";
+import { AdminContext } from "../../../../../../Context/AdminContext";
 
 export default function AddForm() {
+  //state
+  const { handleAdd } = useContext(AdminContext);
+
+  const newProduct = {
+    id: new Date().getTime(),
+    title: "New product",
+    imageSource:
+      "https://hips.hearstapps.com/hmg-prod/images/vibrant-pink-and-white-summer-flowering-cosmos-royalty-free-image-1653499726.jpg",
+    price: 2.5,
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAdd(newProduct);
+  };
+
   return (
-    <AddFormStylde>
+    <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
       <div className="img-preview">img preview</div>
 
       <div className="input-fields">
