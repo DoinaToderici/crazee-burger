@@ -7,7 +7,7 @@ export default function OrderPage() {
 
   return (
     <OrderStyled>
-      <div className="container">
+      <div className="container container-order-page">
         <NavBar />
         <Main />
       </div>
@@ -22,7 +22,7 @@ const OrderStyled = styled.div`
   justify-content: center;
   align-items: center;
 
-  .container {
+  .container-order-page {
     display: flex;
     flex-direction: column;
     height: 95vh;

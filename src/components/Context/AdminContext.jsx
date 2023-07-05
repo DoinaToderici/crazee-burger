@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const AdminContext = createContext();
 
 export const AdminContextProvider = ({ children }) => {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(true);
   const [collapsed, setCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState(false);
 

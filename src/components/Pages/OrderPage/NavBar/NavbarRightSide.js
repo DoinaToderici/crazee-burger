@@ -33,6 +33,7 @@ export default function NavbarRightSide() {
     <>
       <div className="d-flex align-items-center">
         <ToggleButton
+          isChecked={isModeAdmin}
           labelIfChecked="Désactiver le mode admin"
           labelIfUnchecked="Activer le mode admin"
           onToggle={displayToastNotif}
