@@ -17,6 +17,7 @@ const TabStyled = styled.div`
   height: 43px;
   width: fit-content;
   padding: 0 22px;
+  margin-left: 1px;
 
   display: flex;
   justify-content: center;

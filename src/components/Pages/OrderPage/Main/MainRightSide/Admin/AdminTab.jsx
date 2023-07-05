@@ -3,6 +3,7 @@ import Tab from "../../../../../reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AdminContext } from "../../../../../Context/AdminContext";
 import { tabsConfig } from "./tabs.Config";
+import styled from "styled-components";
 
 export default function AdminTab() {
   const { collapsed, setCollapsed, currentTabSelected, setCurrentTabSelected } =
@@ -16,7 +17,7 @@ export default function AdminTab() {
   };
 
   return (
-    <div className="d-flex">
+    <AdminTabStyled className="d-flex">
       <Tab
         icon={collapsed ? <FiChevronUp /> : <FiChevronDown />}
         onClick={() => setCollapsed(!collapsed)}
@@ -34,6 +35,10 @@ export default function AdminTab() {
           />
         );
       })}
-    </div>
+    </AdminTabStyled>
   );
 }
+
+const AdminTabStyled = styled.div`
+  padding: 0 70px;
+`;
