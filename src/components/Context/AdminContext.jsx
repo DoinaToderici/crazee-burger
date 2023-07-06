@@ -2,6 +2,7 @@ import { createContext, useState } from "react";
 import { fakeMenu } from "../../fakeData";
 
 export const AdminContext = createContext();
+const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(true);
@@ -24,6 +25,7 @@ export const AdminContextProvider = ({ children }) => {
     setCurrentTabSelected,
     menu,
     handleAdd,
+    IMG_BY_DEFAULT,
   };
 
   return (

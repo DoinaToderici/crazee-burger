@@ -1,12 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
+import { AdminContext } from "../Context/AdminContext";
 import PrimaryButton from "./PrimaryButton";
 
 export default function Card({ title, imageSource, leftDescription }) {
+  const { IMG_BY_DEFAULT } = useContext(AdminContext);
+
   return (
     <CardStyled className="produit">
       <div className="image">
-        <img src={imageSource} alt={title} />
+        <img
+          src={imageSource !== "" ? imageSource : IMG_BY_DEFAULT}
+          alt={title}
+        />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>

@@ -36,21 +36,17 @@ export default function AddForm() {
   return (
     <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
       <div className="img-preview">
-        <img
-          src={
-            newProduct.imageSource
-              ? newProduct.imageSource
-              : "/images/coming-soon.png"
-          }
-          alt=""
-          className="w-50"
-        />
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
+        ) : (
+          <span>Aucune image</span>
+        )}
       </div>
       <div className="input-fields">
-        {inputsConfig.map(({ Icon, placeholder, name }) => {
+        {inputsConfig.map(({ Icon, placeholder, name }, key) => {
           return (
             <Input
-              key={name}
+              key={key}
               Icon={Icon}
               placeholder={placeholder}
               name={name}
@@ -77,6 +73,14 @@ const AddFormStylde = styled.form`
 
   .img-preview {
     grid-area: 1 / 1 / 4 / 2;
+    text-align: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .input-fields {
@@ -97,5 +101,6 @@ const AddFormStylde = styled.form`
     grid-area: 4 / 2 / 5 / 3;
     width: 50%;
     margin-top: 10px;
+    display: flex;
   }
 `;
