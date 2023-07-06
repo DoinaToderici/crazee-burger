@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { AdminContext } from "../../../../../../Context/AdminContext";
 import Input from "../../../../../../reusable-ui/Input";
 import { inputsConfig } from "./inputsConfig";
+import { theme } from "../../../../../../../theme";
+import { FiCheck } from "react-icons/fi";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -16,12 +18,14 @@ export default function AddForm() {
   //state
   const { handleAdd } = useContext(AdminContext);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [isAdded, setIsAdded] = useState(false);
 
   //functionement
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAdd(newProduct);
     setNewProduct(EMPTY_PRODUCT);
+    displaySuccessMessage();
   };
 
   const handleChange = (e) => {
@@ -30,6 +34,11 @@ export default function AddForm() {
       [e.target.name]: e.target.value,
       id: crypto.randomUUID,
     });
+  };
+
+  const displaySuccessMessage = () => {
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
   };
 
   // affichage
@@ -59,6 +68,12 @@ export default function AddForm() {
       </div>
       <div className="submit-btn">
         <PrimaryButton label="Ajouter un nouveau produit au menu" />
+        {isAdded && (
+          <div className="check-msg">
+            <FiCheck />
+            <p> Ajouté avec succès !</p>
+          </div>
+        )}
       </div>
     </AddFormStylde>
   );
@@ -99,8 +114,23 @@ const AddFormStylde = styled.form`
 
   .submit-btn {
     grid-area: 4 / 2 / 5 / 3;
-    width: 50%;
     margin-top: 10px;
     display: flex;
+    align-items: center;
+
+    button {
+      width: 50%;
+    }
+
+    .check-msg {
+      display: flex;
+      align-items: center;
+      color: ${theme.colors.green};
+      margin: 0 0 0 10px;
+
+      p {
+        margin: 0 0 0 5px;
+      }
+    }
   }
 `;
