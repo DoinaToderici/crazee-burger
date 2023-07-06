@@ -5,8 +5,8 @@ import { theme } from "../../theme";
 export default function Input({ onChange, Icon, ...extraProps }) {
   return (
     <>
-      <InputStyled>
-        {Icon && Icon}
+      <InputStyled className={extraProps.className}>
+        {Icon && <span className="icon">{Icon}</span>}
         <input onChange={onChange} {...extraProps} />
       </InputStyled>
     </>

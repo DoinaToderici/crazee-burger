@@ -1,39 +1,65 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import styled from "styled-components";
 import { AdminContext } from "../../../../../../Context/AdminContext";
+import Input from "../../../../../../reusable-ui/Input";
+import { inputsConfig } from "./inputsConfig";
+
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: "",
+};
 
 export default function AddForm() {
   //state
   const { handleAdd } = useContext(AdminContext);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
-  const newProduct = {
-    id: new Date().getTime(),
-    title: "New product",
-    imageSource:
-      "https://hips.hearstapps.com/hmg-prod/images/vibrant-pink-and-white-summer-flowering-cosmos-royalty-free-image-1653499726.jpg",
-    price: 2.5,
-  };
-
+  //functionement
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAdd(newProduct);
+    setNewProduct(EMPTY_PRODUCT);
   };
 
+  const handleChange = (e) => {
+    setNewProduct({
+      ...newProduct,
+      [e.target.name]: e.target.value,
+      id: crypto.randomUUID,
+    });
+  };
+
+  // affichage
   return (
     <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
-      <div className="img-preview">img preview</div>
-
+      <div className="img-preview">
+        <img
+          src={
+            newProduct.imageSource
+              ? newProduct.imageSource
+              : "/images/coming-soon.png"
+          }
+          alt=""
+          className="w-50"
+        />
+      </div>
       <div className="input-fields">
-        {/* <Input
-          Icon={<FaHamburger />}
-          label="Nom du produit (ex: Super Burger)"
-        />
-        <Input
-          Icon={<BsFillCameraFill />}
-          label="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-        />
-        <Input Icon={<MdOutlineEuro />} label="Prix" /> */}
+        {inputsConfig.map(({ Icon, placeholder, name }) => {
+          return (
+            <Input
+              key={name}
+              Icon={Icon}
+              placeholder={placeholder}
+              name={name}
+              value={newProduct[name]}
+              className="input-add-product-form"
+              onChange={(e) => handleChange(e)}
+            />
+          );
+        })}
       </div>
       <div className="submit-btn">
         <PrimaryButton label="Ajouter un nouveau produit au menu" />
@@ -43,7 +69,6 @@ export default function AddForm() {
 }
 
 const AddFormStylde = styled.form`
-  border: 1px solid black;
   display: grid;
   height: 100%;
   width: 70vw;
@@ -51,22 +76,26 @@ const AddFormStylde = styled.form`
   grid-template-rows: repeat(4, 1fr);
 
   .img-preview {
-    background: red;
     grid-area: 1 / 1 / 4 / 2;
   }
 
   .input-fields {
-    background: blue;
     grid-area: 1 / 2 / 4 / 3;
 
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
+
+    .input-add-product-form {
+      padding: 0 10px;
+      margin: 0;
+    }
   }
 
   .submit-btn {
     grid-area: 4 / 2 / 5 / 3;
     width: 50%;
+    margin-top: 10px;
   }
 `;
