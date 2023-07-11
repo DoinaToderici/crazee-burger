@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
 import { AdminContext } from "../Context/AdminContext";
-import PrimaryButton from "./PrimaryButton";
+import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 
 export default function Card({ id, title, imageSource, leftDescription }) {
@@ -35,7 +35,7 @@ export default function Card({ id, title, imageSource, leftDescription }) {
             <b>{leftDescription}</b>
           </div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button label={"Ajouter"} version="primary-min" />
           </div>
         </div>
       </div>
@@ -139,12 +139,6 @@ const CardStyled = styled.div`
         justify-content: flex-end;
         align-items: center;
         font-size: ${theme.fonts.size.P1};
-
-        .primary-button {
-          font-size: ${theme.fonts.size.XS};
-          cursor: pointer;
-          padding: 12px;
-        }
       }
     }
   }

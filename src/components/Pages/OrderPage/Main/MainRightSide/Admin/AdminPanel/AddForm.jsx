@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
 import styled from "styled-components";
 import { AdminContext } from "../../../../../../Context/AdminContext";
-import Input from "../../../../../../reusable-ui/Input";
+import TextInput from "../../../../../../reusable-ui/TextInput";
 import { inputsConfig } from "./inputsConfig";
 import { theme } from "../../../../../../../theme";
 import { FiCheck } from "react-icons/fi";
+import Button from "../../../../../../reusable-ui/Button";
 
 const EMPTY_PRODUCT = {
   id: "",
@@ -44,7 +44,9 @@ export default function AddForm() {
   // affichage
   return (
     <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
-      <div className="img-preview">
+      <div
+        className={`img-preview ${!newProduct.imageSource && "prev-not-img"}`}
+      >
         {newProduct.imageSource ? (
           <img src={newProduct.imageSource} alt={newProduct.title} />
         ) : (
@@ -54,20 +56,20 @@ export default function AddForm() {
       <div className="input-fields">
         {inputsConfig.map(({ Icon, placeholder, name }, key) => {
           return (
-            <Input
+            <TextInput
               key={key}
               Icon={Icon}
               placeholder={placeholder}
               name={name}
               value={newProduct[name]}
-              className="input-add-product-form"
               onChange={(e) => handleChange(e)}
+              version="minimalist"
             />
           );
         })}
       </div>
       <div className="submit-btn">
-        <PrimaryButton label="Ajouter un nouveau produit au menu" />
+        <Button label="Ajouter un nouveau produit au menu" version="success" />
         {isAdded && (
           <div className="check-msg">
             <FiCheck />
@@ -81,8 +83,8 @@ export default function AddForm() {
 
 const AddFormStylde = styled.form`
   display: grid;
-  height: 100%;
-  width: 70vw;
+  max-height: 100%;
+  width: 70%;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
 
@@ -90,26 +92,32 @@ const AddFormStylde = styled.form`
     grid-area: 1 / 1 / 4 / 2;
     text-align: center;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.prev-not-img {
+      width: 100%;
+      height: 100%;
+      border-radius: ${theme.borderRadius.round};
+      border: 1px solid ${theme.colors.greyLight};
+    }
+
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center;
+      object-position: top center;
     }
   }
 
   .input-fields {
-    grid-area: 1 / 2 / 4 / 3;
-
     display: grid;
+    grid-area: 1 / 2 / 4 / 3;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
-
-    .input-add-product-form {
-      padding: 0 10px;
-      margin: 0;
-    }
+    gap: 8px;
+    margin-left: 8px;
   }
 
   .submit-btn {
@@ -117,15 +125,12 @@ const AddFormStylde = styled.form`
     margin-top: 10px;
     display: flex;
     align-items: center;
-
-    button {
-      width: 50%;
-    }
+    margin: 8px 0 0 8px;
 
     .check-msg {
       display: flex;
       align-items: center;
-      color: ${theme.colors.green};
+      color: ${theme.colors.success};
       margin: 0 0 0 10px;
 
       p {

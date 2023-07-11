@@ -4,7 +4,7 @@ import { formatPrice } from "../../../../../utils/maths";
 import { AdminContext } from "../../../../Context/AdminContext";
 
 import Card from "../../../../reusable-ui/Card";
-import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
 
 export default function Menu() {
@@ -17,7 +17,8 @@ export default function Menu() {
           <div className="empty-menu">
             <h2>Le menu est vide ?</h2>
             <h2>Cliquez ci-dessous pour le réinitialiser</h2>
-            <PrimaryButton
+            <Button
+              version="primary"
               label="Générer de nouveaux produits"
               onClick={resetMenu}
             />
