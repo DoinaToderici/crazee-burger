@@ -5,6 +5,7 @@ import { AdminContext } from "../../../../Context/AdminContext";
 
 import Card from "../../../../reusable-ui/Card";
 import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
+import { theme } from "../../../../../theme";
 
 export default function Menu() {
   const { menu, resetMenu, isModeAdmin } = useContext(AdminContext);
@@ -13,12 +14,20 @@ export default function Menu() {
     <StyledMenu>
       {menu.length === 0 ? (
         isModeAdmin ? (
-          <div>
-            <p>Pas de produits</p>
-            <PrimaryButton label="reset menu" onClick={resetMenu} />
+          <div className="empty-menu">
+            <h2>Le menu est vide ?</h2>
+            <h2>Cliquez ci-dessous pour le réinitialiser</h2>
+            <PrimaryButton
+              label="Générer de nouveaux produits"
+              onClick={resetMenu}
+            />
           </div>
         ) : (
-          <h2>Pas de produits en stock</h2>
+          <div className="empty-menu">
+            <h2>Victime de notre succès ! :D</h2>
+            <h2>De nouvelles recettes sont en cours de préparation.</h2>
+            <h2>À très vite !</h2>
+          </div>
         )
       ) : (
         menu.map(({ id, title, imageSource, price }) => {
@@ -44,4 +53,25 @@ const StyledMenu = styled.div`
   justify-items: center;
   padding: 50px 50px 150px;
   overflow-y: scroll;
+
+  .empty-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      text-align: center;
+      font-family: "Amatic SC", cursive;
+      color: ${theme.colors.greyBlue};
+      font-size: ${theme.fonts.size.P4};
+
+      &:not(:first-of-type) {
+        margin-top: 20px;
+      }
+    }
+
+    button {
+      margin-top: 30px;
+    }
+  }
 `;
