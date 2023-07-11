@@ -5,7 +5,7 @@ export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [currentTabSelected, setCurrentTabSelected] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
@@ -13,6 +13,14 @@ export const AdminContextProvider = ({ children }) => {
   const handleAdd = (newProduct) => {
     const copyMenu = [...menu];
     const menuUpdated = [newProduct, ...copyMenu];
+    setMenu(menuUpdated);
+  };
+
+  const handleDelete = (idCurentCard) => {
+    const copyMenu = [...menu];
+    const menuUpdated = copyMenu.filter((product) => {
+      return product.id !== idCurentCard;
+    });
     setMenu(menuUpdated);
   };
 
@@ -25,6 +33,7 @@ export const AdminContextProvider = ({ children }) => {
     setCurrentTabSelected,
     menu,
     handleAdd,
+    handleDelete,
     IMG_BY_DEFAULT,
   };
 

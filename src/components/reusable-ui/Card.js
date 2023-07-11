@@ -3,12 +3,25 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 import { AdminContext } from "../Context/AdminContext";
 import PrimaryButton from "./PrimaryButton";
+import { TiDelete } from "react-icons/ti";
 
-export default function Card({ title, imageSource, leftDescription }) {
-  const { IMG_BY_DEFAULT } = useContext(AdminContext);
+export default function Card({ id, title, imageSource, leftDescription }) {
+  const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
+    useContext(AdminContext);
 
   return (
     <CardStyled className="produit">
+      {isModeAdmin && (
+        <button
+          className="delete-btn"
+          aria-label="delete-button"
+          onClick={() => {
+            handleDelete(id);
+          }}
+        >
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="image">
         <img
           src={imageSource !== "" ? imageSource : IMG_BY_DEFAULT}
@@ -40,6 +53,37 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
+
+  .delete-btn {
+    border: 1px solid red;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    z-index: 2;
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      /* border: 1px solid blue; */
+      height: 100%;
+      width: 100%;
+    }
+
+    :hover {
+      color: ${theme.colors.red};
+      /* background-color: red; */
+    }
+
+    :active {
+      color: ${theme.colors.primary};
+    }
+  }
 
   .image {
     width: 100%;

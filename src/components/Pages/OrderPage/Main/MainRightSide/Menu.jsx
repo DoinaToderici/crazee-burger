@@ -14,6 +14,7 @@ export default function Menu() {
         menu.map(({ id, title, imageSource, price }) => {
           return (
             <Card
+              id={id}
               title={title}
               imageSource={imageSource}
               leftDescription={formatPrice(price)}
