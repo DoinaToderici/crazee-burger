@@ -64,7 +64,6 @@ const CardStyled = styled.div`
     width: 30px;
     height: 30px;
     color: ${theme.colors.primary};
-    z-index: 2;
     padding: 0;
     border: none;
     background: none;

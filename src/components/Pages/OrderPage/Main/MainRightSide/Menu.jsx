@@ -4,13 +4,23 @@ import { formatPrice } from "../../../../../utils/maths";
 import { AdminContext } from "../../../../Context/AdminContext";
 
 import Card from "../../../../reusable-ui/Card";
+import PrimaryButton from "../../../../reusable-ui/PrimaryButton";
 
 export default function Menu() {
-  const { menu } = useContext(AdminContext);
+  const { menu, resetMenu, isModeAdmin } = useContext(AdminContext);
 
   return (
     <StyledMenu>
-      {menu &&
+      {menu.length === 0 ? (
+        isModeAdmin ? (
+          <div>
+            <p>Pas de produits</p>
+            <PrimaryButton label="reset menu" onClick={resetMenu} />
+          </div>
+        ) : (
+          <h2>Pas de produits en stock</h2>
+        )
+      ) : (
         menu.map(({ id, title, imageSource, price }) => {
           return (
             <Card
@@ -21,7 +31,8 @@ export default function Menu() {
               key={id}
             ></Card>
           );
-        })}
+        })
+      )}
     </StyledMenu>
   );
 }

@@ -6,7 +6,7 @@ const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
 
@@ -24,6 +24,10 @@ export const AdminContextProvider = ({ children }) => {
     setMenu(menuUpdated);
   };
 
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE);
+  };
+
   const propsAdminContext = {
     isModeAdmin,
     setIsModeAdmin,
@@ -34,6 +38,7 @@ export const AdminContextProvider = ({ children }) => {
     menu,
     handleAdd,
     handleDelete,
+    resetMenu,
     IMG_BY_DEFAULT,
   };
 
