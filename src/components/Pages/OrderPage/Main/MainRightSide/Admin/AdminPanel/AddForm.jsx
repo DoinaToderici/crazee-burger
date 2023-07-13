@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { AdminContext } from "../../../../../../Context/AdminContext";
 import TextInput from "../../../../../../reusable-ui/TextInput";
 import { inputsConfig } from "./inputsConfig";
-import { theme } from "../../../../../../../theme";
-import { FiCheck } from "react-icons/fi";
-import Button from "../../../../../../reusable-ui/Button";
+import ImgPreview from "./ImgPreview";
+import SubmiSection from "./SubmiSection";
 
 export default function AddForm() {
   //state
@@ -36,23 +35,15 @@ export default function AddForm() {
   // affichage
   return (
     <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
-      <div
-        className={`img-preview ${!newProduct.imageSource && "prev-not-img"}`}
-      >
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt={newProduct.title} />
-        ) : (
-          <span>Aucune image</span>
-        )}
-      </div>
+      <ImgPreview newProduct={newProduct} />
       <div className="input-fields">
         {inputsConfig.map(({ Icon, placeholder, name }, key) => {
           return (
             <TextInput
-              key={key}
               Icon={Icon}
               placeholder={placeholder}
               name={name}
+              key={key}
               value={newProduct[name]}
               onChange={(e) => handleChange(e)}
               version="minimalist"
@@ -60,15 +51,7 @@ export default function AddForm() {
           );
         })}
       </div>
-      <div className="submit-btn">
-        <Button label="Ajouter un nouveau produit au menu" version="success" />
-        {isAdded && (
-          <div className="check-msg">
-            <FiCheck />
-            <p> Ajouté avec succès !</p>
-          </div>
-        )}
-      </div>
+      <SubmiSection isAdded={isAdded} />
     </AddFormStylde>
   );
 }
@@ -80,29 +63,6 @@ const AddFormStylde = styled.form`
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
 
-  .img-preview {
-    grid-area: 1 / 1 / 4 / 2;
-    text-align: center;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &.prev-not-img {
-      width: 100%;
-      height: 100%;
-      border-radius: ${theme.borderRadius.round};
-      border: 1px solid ${theme.colors.greyLight};
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: top center;
-    }
-  }
-
   .input-fields {
     display: grid;
     grid-area: 1 / 2 / 4 / 3;
@@ -110,24 +70,5 @@ const AddFormStylde = styled.form`
     grid-template-rows: repeat(3, 1fr);
     gap: 8px;
     margin-left: 8px;
-  }
-
-  .submit-btn {
-    grid-area: 4 / 2 / 5 / 3;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    margin: 8px 0 0 8px;
-
-    .check-msg {
-      display: flex;
-      align-items: center;
-      color: ${theme.colors.success};
-      margin: 0 0 0 10px;
-
-      p {
-        margin: 0 0 0 5px;
-      }
-    }
   }
 `;
