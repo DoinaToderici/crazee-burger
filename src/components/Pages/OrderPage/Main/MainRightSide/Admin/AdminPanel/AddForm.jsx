@@ -7,23 +7,16 @@ import { theme } from "../../../../../../../theme";
 import { FiCheck } from "react-icons/fi";
 import Button from "../../../../../../reusable-ui/Button";
 
-const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: "",
-};
-
 export default function AddForm() {
   //state
-  const { handleAdd } = useContext(AdminContext);
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { handleAdd, newProduct, setNewProduct, EMPTY_PRODUCT } =
+    useContext(AdminContext);
   const [isAdded, setIsAdded] = useState(false);
 
   //functionement
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAdd(newProduct);
+    handleAdd({ ...newProduct, id: new Date().valueOf() });
     setNewProduct(EMPTY_PRODUCT);
     displaySuccessMessage();
   };
@@ -32,7 +25,6 @@ export default function AddForm() {
     setNewProduct({
       ...newProduct,
       [e.target.name]: e.target.value,
-      id: crypto.randomUUID,
     });
   };
 

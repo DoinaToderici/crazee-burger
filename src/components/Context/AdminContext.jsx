@@ -3,12 +3,19 @@ import { fakeMenu } from "../../fakeData";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
+const EMPTY_PRODUCT = {
+  id: "",
+  title: "",
+  imageSource: "",
+  price: "",
+};
 
 export const AdminContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState(false);
   const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   const handleAdd = (newProduct) => {
     const copyMenu = [...menu];
@@ -40,6 +47,9 @@ export const AdminContextProvider = ({ children }) => {
     handleDelete,
     resetMenu,
     IMG_BY_DEFAULT,
+    newProduct,
+    setNewProduct,
+    EMPTY_PRODUCT,
   };
 
   return (
