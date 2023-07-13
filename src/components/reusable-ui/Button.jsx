@@ -14,10 +14,6 @@ export default function Button({ label, Icon, version, ...extraProps }) {
 }
 
 const ButtonStyled = styled.button`
-  ${(props) => props.version === "primary" && extraPrimaryStyle}
-  ${(props) => props.version === "primary-min" && extraPrimaryMinStyle}
-  ${(props) => props.version === "success" && extraSuccessStyle}
-
   justify-content: center;
   align-items: center;
   position: relative;
@@ -26,7 +22,6 @@ const ButtonStyled = styled.button`
   line-height: 1;
   border-radius: 5px;
   font-size: ${theme.fonts.size.P0};
-  font-weight: ${theme.fonts.weights.heavy};
   color: ${theme.colors.white};
 
   .icon {
@@ -46,11 +41,14 @@ const ButtonStyled = styled.button`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  ${(props) => extraStyle[props.version]}
 `;
 
 const extraPrimaryStyle = css`
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
+  font-weight: ${theme.fonts.weights.heavy};
   padding: 18px 24px;
   width: 100%;
 
@@ -70,7 +68,8 @@ const extraSuccessStyle = css`
   margin-top: 8px;
   background-color: ${theme.colors.success};
   border: 1px solid ${theme.colors.success};
-  padding: 18px 24px;
+  font-weight: ${theme.fonts.weights.bold};
+  padding: 10px 30px;
 
   &:hover:not(:disabled) {
     border: 1px solid ${theme.colors.success};
@@ -91,3 +90,9 @@ const extraPrimaryMinStyle = css`
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
 `;
+
+const extraStyle = {
+  primary: extraPrimaryStyle,
+  success: extraSuccessStyle,
+  primaryMin: extraPrimaryMinStyle,
+};

@@ -35,7 +35,7 @@ export default function Card({ id, title, imageSource, leftDescription }) {
             <b>{leftDescription}</b>
           </div>
           <div className="right-description">
-            <Button label={"Ajouter"} version="primary-min" />
+            <Button label={"Ajouter"} version="primaryMin" />
           </div>
         </div>
       </div>

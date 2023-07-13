@@ -14,9 +14,6 @@ export default function TextInput({ onChange, Icon, version, ...extraProps }) {
 }
 
 const TextInputStyled = styled.div`
-  ${(props) => props.version === "normal" && extraNormalStyle}
-  ${(props) => props.version === "minimalist" && extraMinimalistlStyle}
-  
   font-family: "Arial";
   border-radius: ${theme.borderRadius.round};
   display: flex;
@@ -35,6 +32,8 @@ const TextInputStyled = styled.div`
     width: 100%;
     font-size: ${theme.fonts.size.P0};
   }
+
+  ${(props) => extraStyle[props.version]}
 `;
 
 const extraNormalStyle = css`
@@ -66,3 +65,8 @@ const extraMinimalistlStyle = css`
     background-color: ${theme.colors.background_white};
   }
 `;
+
+const extraStyle = {
+  normal: extraNormalStyle,
+  minimalist: extraMinimalistlStyle,
+};
