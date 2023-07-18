@@ -11,9 +11,9 @@ const EMPTY_PRODUCT = {
 };
 
 export const AdminContextProvider = ({ children }) => {
-  const [isModeAdmin, setIsModeAdmin] = useState(false);
-  const [collapsed, setCollapsed] = useState(true);
-  const [currentTabSelected, setCurrentTabSelected] = useState(false);
+  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
+  const [currentTabSelected, setCurrentTabSelected] = useState("edit");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
