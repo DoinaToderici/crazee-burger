@@ -17,6 +17,7 @@ const TabStyled = styled.div`
   height: 43px;
   width: fit-content;
   padding: 0 22px;
+  margin-left: 1px;
 
   display: flex;
   justify-content: center;
@@ -32,7 +33,7 @@ const TabStyled = styled.div`
   background: ${theme.colors.white};
   box-shadow: ${theme.shadows.subtle};
 
-  &.is-actif {
+  &.is-active {
     background: ${theme.colors.background_dark};
     color: ${theme.colors.white};
     border-color: ${theme.colors.background_dark};
