@@ -6,6 +6,7 @@ import { getTabSelected, tabsConfig as tabs } from "../tabs.Config";
 
 export default function AdminPanel() {
   const { currentTabSelected } = useContext(AdminContext);
+
   const tabSelected = getTabSelected(tabs, currentTabSelected);
 
   return (
@@ -15,9 +16,9 @@ export default function AdminPanel() {
 
 const AdminPanelStyled = styled.div`
   height: 250px;
-  background: ${theme.colors.greyLight};
+  background: ${theme.colors.white};
   border: 1px solid ${theme.colors.greyLight};
   box-shadow: ${theme.shadows.subtle};
-
+  box-sizing: border-box;
   padding: 30px 5%;
 `;

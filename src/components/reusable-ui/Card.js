@@ -1,12 +1,32 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../theme";
-import PrimaryButton from "./PrimaryButton";
+import { AdminContext } from "../Context/AdminContext";
+import Button from "./Button";
+import { TiDelete } from "react-icons/ti";
 
-export default function Card({ title, imageSource, leftDescription }) {
+export default function Card({ id, title, imageSource, leftDescription }) {
+  const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
+    useContext(AdminContext);
+
   return (
     <CardStyled className="produit">
+      {isModeAdmin && (
+        <button
+          className="delete-btn"
+          aria-label="delete-button"
+          onClick={() => {
+            handleDelete(id);
+          }}
+        >
+          <TiDelete className="icon" />
+        </button>
+      )}
       <div className="image">
-        <img src={imageSource} alt={title} />
+        <img
+          src={imageSource !== "" ? imageSource : IMG_BY_DEFAULT}
+          alt={title}
+        />
       </div>
       <div className="text-info">
         <div className="title">{title}</div>
@@ -15,7 +35,7 @@ export default function Card({ title, imageSource, leftDescription }) {
             <b>{leftDescription}</b>
           </div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <Button label={"Ajouter"} version="primaryMin" />
           </div>
         </div>
       </div>
@@ -33,6 +53,36 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
+
+  .delete-btn {
+    border: 1px solid red;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: ${theme.colors.primary};
+    padding: 0;
+    border: none;
+    background: none;
+
+    .icon {
+      /* border: 1px solid blue; */
+      height: 100%;
+      width: 100%;
+    }
+
+    :hover {
+      color: ${theme.colors.red};
+      /* background-color: red; */
+    }
+
+    :active {
+      color: ${theme.colors.primary};
+    }
+  }
 
   .image {
     width: 100%;
@@ -89,12 +139,6 @@ const CardStyled = styled.div`
         justify-content: flex-end;
         align-items: center;
         font-size: ${theme.fonts.size.P1};
-
-        .primary-button {
-          font-size: ${theme.fonts.size.XS};
-          cursor: pointer;
-          padding: 12px;
-        }
       }
     }
   }

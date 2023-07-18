@@ -1,65 +1,74 @@
-import React from "react";
-import Input from "../../../../../../reusable-ui/Input";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
-import PrimaryButton from "../../../../../../reusable-ui/PrimaryButton";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { AdminContext } from "../../../../../../Context/AdminContext";
+import TextInput from "../../../../../../reusable-ui/TextInput";
+import { inputsConfig } from "./inputsConfig";
+import ImgPreview from "./ImgPreview";
+import SubmiSection from "./SubmiSection";
 
 export default function AddForm() {
-  return (
-    <AddFormStylde>
-      <div className="img-preview">img preview</div>
+  //state
+  const { handleAdd, newProduct, setNewProduct, EMPTY_PRODUCT } =
+    useContext(AdminContext);
+  const [isAdded, setIsAdded] = useState(false);
 
+  //functionement
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAdd({ ...newProduct, id: new Date().valueOf() });
+    setNewProduct(EMPTY_PRODUCT);
+    displaySuccessMessage();
+  };
+
+  const handleChange = (e) => {
+    setNewProduct({
+      ...newProduct,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const displaySuccessMessage = () => {
+    setIsAdded(true);
+    setTimeout(() => setIsAdded(false), 2000);
+  };
+
+  // affichage
+  return (
+    <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
+      <ImgPreview newProduct={newProduct} />
       <div className="input-fields">
-        {/* <Input
-          Icon={<FaHamburger />}
-          label="Nom du produit (ex: Super Burger)"
-        />
-        <Input
-          Icon={<BsFillCameraFill />}
-          label="Lien URL d'une image (ex: https://la-photo-de-mon-produit.png)"
-        />
-        <Input Icon={<MdOutlineEuro />} label="Prix" /> */}
+        {inputsConfig.map(({ Icon, placeholder, name }, key) => {
+          return (
+            <TextInput
+              Icon={Icon}
+              placeholder={placeholder}
+              name={name}
+              key={key}
+              value={newProduct[name]}
+              onChange={(e) => handleChange(e)}
+              version="minimalist"
+            />
+          );
+        })}
       </div>
-      <div className="submit-btn">
-        submit btn
-        {/* <PrimaryButton label="Ajouter un nouveau produit au menu" /> */}
-      </div>
+      <SubmiSection isAdded={isAdded} />
     </AddFormStylde>
   );
 }
 
 const AddFormStylde = styled.form`
-  border: 1px solid black;
   display: grid;
-  height: 100%;
-  width: 70vw;
+  max-height: 100%;
+  width: 70%;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
 
-  .img-preview {
-    background: red;
-    grid-area: 1 / 1 / 4 / 2;
-  }
-
   .input-fields {
-    background: blue;
-    grid-area: 1 / 2 / 4 / 3;
-
     display: grid;
+    grid-area: 1 / 2 / 4 / 3;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
-
-    .hey {
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  .submit-btn {
-    background: green;
-    grid-area: 4 / 2 / 5 / 3;
+    gap: 8px;
+    margin-left: 8px;
   }
 `;

@@ -4,8 +4,8 @@ import { HiUserCircle } from "react-icons/hi";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import { IoChevronForwardOutline } from "react-icons/io5";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import Input from "../../reusable-ui/Input";
+import Button from "../../reusable-ui/Button";
+import TextInput from "../../reusable-ui/TextInput";
 
 export default function LoginForm() {
   //hooks
@@ -33,18 +33,20 @@ export default function LoginForm() {
           <h2>Connectez-vous</h2>
         </div>
         <div>
-          <Input
+          <TextInput
             value={inputData}
             onChange={handleChange}
-            Icon={<HiUserCircle className="icon" />}
+            Icon={<HiUserCircle />}
             placeholder="Entrez votre prénom"
             type="text"
             required
+            version="normal"
           />
-          <PrimaryButton
+          <Button
             label="Accéder à votre espace"
             type="submit"
             Icon={<IoChevronForwardOutline />}
+            version="primary"
           />
         </div>
       </LoginFormStyled>
@@ -75,13 +77,5 @@ const LoginFormStyled = styled.form`
     margin: 20px 10px 10px;
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P4};
-  }
-
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: ${theme.fonts.size.P2};
-    margin-left: 10px;
   }
 `;
