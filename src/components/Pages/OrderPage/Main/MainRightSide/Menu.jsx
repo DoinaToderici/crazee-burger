@@ -1,26 +1,48 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import { fakeMenu } from "../../../../../fakeData";
 import { formatPrice } from "../../../../../utils/maths";
+import { AdminContext } from "../../../../Context/AdminContext";
 
 import Card from "../../../../reusable-ui/Card";
+import Button from "../../../../reusable-ui/Button";
+import { theme } from "../../../../../theme";
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const { menu, resetMenu, isModeAdmin } = useContext(AdminContext);
 
   return (
     <StyledMenu>
-      {menu &&
+      {menu.length === 0 ? (
+        isModeAdmin ? (
+          <div className="empty-menu">
+            <h2>Le menu est vide ?</h2>
+            <h2>Cliquez ci-dessous pour le réinitialiser</h2>
+            <Button
+              version="primary"
+              label="Générer de nouveaux produits"
+              onClick={resetMenu}
+            />
+          </div>
+        ) : (
+          <div className="empty-menu">
+            <h2>Victime de notre succès ! :D</h2>
+            <h2>De nouvelles recettes sont en cours de préparation.</h2>
+            <h2>À très vite !</h2>
+          </div>
+        )
+      ) : (
         menu.map(({ id, title, imageSource, price }) => {
           return (
             <Card
+              id={id}
               title={title}
               imageSource={imageSource}
               leftDescription={formatPrice(price)}
               key={id}
             ></Card>
           );
-        })}
+        })
+      )}
     </StyledMenu>
   );
 }
@@ -32,4 +54,25 @@ const StyledMenu = styled.div`
   justify-items: center;
   padding: 50px 50px 150px;
   overflow-y: scroll;
+
+  .empty-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      text-align: center;
+      font-family: "Amatic SC", cursive;
+      color: ${theme.colors.greyBlue};
+      font-size: ${theme.fonts.size.P4};
+
+      &:not(:first-of-type) {
+        margin-top: 20px;
+      }
+    }
+
+    button {
+      margin-top: 30px;
+    }
+  }
 `;
