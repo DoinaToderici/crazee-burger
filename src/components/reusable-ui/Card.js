@@ -5,12 +5,18 @@ import { AdminContext } from "../Context/AdminContext";
 import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 
-export default function Card({ id, title, imageSource, leftDescription }) {
+export default function Card({
+  id,
+  title,
+  imageSource,
+  leftDescription,
+  onClick,
+}) {
   const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
     useContext(AdminContext);
 
   return (
-    <CardStyled className="produit">
+    <CardStyled className="produit" onClick={onClick}>
       {isModeAdmin && (
         <button
           className="delete-btn"

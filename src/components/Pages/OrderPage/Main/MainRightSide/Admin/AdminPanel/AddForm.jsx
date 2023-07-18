@@ -5,11 +5,11 @@ import TextInput from "../../../../../../reusable-ui/TextInput";
 import { inputsConfig } from "./inputsConfig";
 import ImgPreview from "./ImgPreview";
 import SubmiSection from "./SubmiSection";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 
 export default function AddForm() {
   //state
-  const { handleAdd, newProduct, setNewProduct, EMPTY_PRODUCT } =
-    useContext(AdminContext);
+  const { handleAdd, newProduct, setNewProduct } = useContext(AdminContext);
   const [isAdded, setIsAdded] = useState(false);
 
   //functionement

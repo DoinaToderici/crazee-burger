@@ -1,14 +1,9 @@
 import { createContext, useState } from "react";
 import { fakeMenu } from "../../fakeData";
+import { EMPTY_PRODUCT } from "../../enums/product";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
-const EMPTY_PRODUCT = {
-  id: "",
-  title: "",
-  imageSource: "",
-  price: "",
-};
 
 export const AdminContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(true);
@@ -16,6 +11,7 @@ export const AdminContextProvider = ({ children }) => {
   const [currentTabSelected, setCurrentTabSelected] = useState("edit");
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState();
 
   const handleAdd = (newProduct) => {
     const copyMenu = [...menu];
@@ -43,13 +39,15 @@ export const AdminContextProvider = ({ children }) => {
     currentTabSelected,
     setCurrentTabSelected,
     menu,
+    setMenu,
     handleAdd,
     handleDelete,
     resetMenu,
     IMG_BY_DEFAULT,
     newProduct,
     setNewProduct,
-    EMPTY_PRODUCT,
+    productSelected,
+    setProductSelected,
   };
 
   return (
