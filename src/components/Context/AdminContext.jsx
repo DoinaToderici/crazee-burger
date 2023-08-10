@@ -7,8 +7,8 @@ const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
   const [isModeAdmin, setIsModeAdmin] = useState(true);
-  const [collapsed, setCollapsed] = useState(false);
-  const [currentTabSelected, setCurrentTabSelected] = useState("edit");
+  const [collapsed, setCollapsed] = useState(true);
+  const [currentTabSelected, setCurrentTabSelected] = useState();
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState();
@@ -25,6 +25,26 @@ export const AdminContextProvider = ({ children }) => {
       return product.id !== idCurentCard;
     });
     setMenu(menuUpdated);
+  };
+
+  const handleUpdate = (name, value) => {
+    /// DEEP CLONE METHOD
+
+    // 1. structuredClone(ARAY_NAME)
+
+    // 2. JSON.parse(JSON.stringify(ARAY_NAME))
+    const copyProductSelected = JSON.parse(JSON.stringify(productSelected));
+    const updatedProduct = (copyProductSelected[name] = value);
+
+    setProductSelected(updatedProduct);
+    const updatedMenu = menu.map((itemToUpdate) => {
+      if (itemToUpdate.id === productSelected.id) {
+        return updatedProduct;
+      } else {
+        return itemToUpdate;
+      }
+    });
+    setMenu(updatedMenu);
   };
 
   const resetMenu = () => {
@@ -48,6 +68,7 @@ export const AdminContextProvider = ({ children }) => {
     setNewProduct,
     productSelected,
     setProductSelected,
+    handleUpdate,
   };
 
   return (

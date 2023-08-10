@@ -34,7 +34,7 @@ export default function AddForm() {
 
   // affichage
   return (
-    <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
+    <AddFormStyled onSubmit={(e) => handleSubmit(e)}>
       <ImgPreview newProduct={newProduct} />
       <div className="input-fields">
         {inputsConfig.map(({ Icon, placeholder, name }, key) => {
@@ -52,11 +52,11 @@ export default function AddForm() {
         })}
       </div>
       <SubmiSection isAdded={isAdded} />
-    </AddFormStylde>
+    </AddFormStyled>
   );
 }
 
-const AddFormStylde = styled.form`
+const AddFormStyled = styled.form`
   display: grid;
   max-height: 100%;
   width: 70%;

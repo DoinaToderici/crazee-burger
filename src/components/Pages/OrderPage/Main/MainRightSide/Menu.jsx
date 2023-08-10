@@ -8,12 +8,20 @@ import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
 
 export default function Menu() {
-  const { menu, resetMenu, isModeAdmin, setProductSelected } =
-    useContext(AdminContext);
+  const {
+    menu,
+    resetMenu,
+    isModeAdmin,
+    setProductSelected,
+    setCollapsed,
+    setCurrentTabSelected,
+  } = useContext(AdminContext);
 
   const handleClick = (idProductSelected) => {
     const selectedProd = menu.find((item) => item.id === idProductSelected);
     setProductSelected(selectedProd);
+    setCollapsed(false);
+    setCurrentTabSelected("edit");
   };
 
   return (
