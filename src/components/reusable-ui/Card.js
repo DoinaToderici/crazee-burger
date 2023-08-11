@@ -12,12 +12,18 @@ export default function Card({
   leftDescription,
   onClick,
   isHoverable,
+  isSelected,
 }) {
   const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
     useContext(AdminContext);
 
   return (
-    <CardStyled className="produit" onClick={onClick} isHoverable={isHoverable}>
+    <CardStyled
+      className="produit"
+      onClick={onClick}
+      isHoverable={isHoverable}
+      selected={isSelected}
+    >
       <div className="card">
         {isModeAdmin && (
           <button
@@ -43,7 +49,11 @@ export default function Card({
               <b>{leftDescription}</b>
             </div>
             <div className="right-description">
-              <Button label={"Ajouter"} version="primaryMin" />
+              <Button
+                label={"Ajouter"}
+                version="primaryMin"
+                className="primary-button"
+              />
             </div>
           </div>
         </div>
@@ -53,7 +63,7 @@ export default function Card({
 }
 
 const CardStyled = styled.div`
-  ${(props) => props.isHoverable && hoverableStyled}
+  ${({ isHoverable }) => isHoverable && hoverableStyled}
   border-radius: ${theme.borderRadius.extraRound};
 
   .card {
@@ -155,6 +165,8 @@ const CardStyled = styled.div`
         }
       }
     }
+
+    ${({ isHoverable, selected }) => isHoverable && selected && selectedStyle}
   }
 `;
 
@@ -164,5 +176,67 @@ const hoverableStyled = css`
     transition: ease-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
+  }
+`;
+
+const selectedStyle = css`
+  background: ${theme.colors.primary};
+
+  .primary-button {
+    color: ${theme.colors.primary};
+    background-color: ${theme.colors.white};
+    border: 1px solid ${theme.colors.white};
+    transition: all 200ms ease-out;
+
+    :hover {
+      color: ${theme.colors.white};
+      background-color: ${theme.colors.primary};
+      border: 1px solid ${theme.colors.white};
+      transition: all 200ms ease-out;
+    }
+
+    :active {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary};
+    }
+
+    &.is-disabled {
+      opacity: 50%;
+      cursor: not-allowed;
+      z-index: 2;
+    }
+
+    &.with-focus {
+      border: 1px solid white;
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.primary};
+
+      :hover {
+        color: ${theme.colors.white};
+        background-color: ${theme.colors.primary};
+        border: 1px solid ${theme.colors.white};
+      }
+
+      :active {
+        background-color: ${theme.colors.white};
+        color: ${theme.colors.primary};
+      }
+    }
+  }
+
+  .delete-btn {
+    color: ${theme.colors.white};
+
+    :active {
+      color: ${theme.colors.white};
+    }
+  }
+
+  .text-info {
+    .description {
+      .left-description {
+        color: ${theme.colors.white};
+      }
+    }
   }
 `;

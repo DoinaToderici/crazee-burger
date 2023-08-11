@@ -12,6 +12,7 @@ export default function Menu() {
     menu,
     resetMenu,
     isModeAdmin,
+    productSelected,
     setProductSelected,
     setCollapsed,
     setCurrentTabSelected,
@@ -24,6 +25,10 @@ export default function Menu() {
     if (isModeAdmin) {
       setCurrentTabSelected("edit");
     }
+  };
+
+  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
+    return productMenuId === productClickedId;
   };
 
   return (
@@ -57,6 +62,7 @@ export default function Menu() {
               key={id}
               onClick={() => handleClick(id)}
               isHoverable={isModeAdmin}
+              isSelected={checkIfCardIsClicked(id, productSelected.id)}
             ></Card>
           );
         })

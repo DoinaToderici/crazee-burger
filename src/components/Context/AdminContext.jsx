@@ -13,7 +13,7 @@ export const AdminContextProvider = ({ children }) => {
   const [currentTabSelected, setCurrentTabSelected] = useState();
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] = useState();
+  const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
 
   // comportements (gestionnaire d'éveniment or events handlers)
   const handleAdd = (newProduct) => {
