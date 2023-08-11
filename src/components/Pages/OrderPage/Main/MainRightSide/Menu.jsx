@@ -56,6 +56,7 @@ export default function Menu() {
               leftDescription={formatPrice(price)}
               key={id}
               onClick={() => handleClick(id)}
+              isHoverable={isModeAdmin}
             ></Card>
           );
         })
