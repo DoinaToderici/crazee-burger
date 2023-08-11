@@ -19,6 +19,7 @@ export default function Menu() {
   } = useContext(AdminContext);
 
   const handleClick = (idProductClicked) => {
+    if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
     const ProductClickedOn = menu.find((item) => item.id === idProductClicked);
     setProductSelected(ProductClickedOn);
     setCollapsed(false);
