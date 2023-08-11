@@ -86,9 +86,13 @@ const extraPrimaryMinStyle = css`
   font-size: ${theme.fonts.size.XS} !important;
   cursor: pointer;
   padding: 10px;
-
   background-color: ${theme.colors.primary};
   border: 1px solid ${theme.colors.primary};
+
+  &:hover:not(:disabled) {
+    border: 1px solid ${theme.colors.primary};
+    color: ${theme.colors.primary};
+  }
 `;
 
 const extraStyle = {

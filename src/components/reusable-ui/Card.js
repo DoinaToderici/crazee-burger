@@ -54,6 +54,7 @@ export default function Card({
 
 const CardStyled = styled.div`
   ${(props) => props.isHoverable && hoverableStyled}
+  border-radius: ${theme.borderRadius.extraRound};
 
   .card {
     background: ${theme.colors.white};
@@ -65,7 +66,6 @@ const CardStyled = styled.div`
     padding: 20px;
     padding-bottom: 10px;
     box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
-    border-radius: ${theme.borderRadius.extraRound};
     position: relative;
 
     .delete-btn {
