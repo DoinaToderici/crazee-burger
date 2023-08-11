@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import HintMessage from "./HintMessage";
 import { AdminContext } from "../../../../../../Context/AdminContext";
 import TextInput from "../../../../../../reusable-ui/TextInput";
@@ -7,12 +7,14 @@ import ImgPreview from "./ImgPreview";
 import styled from "styled-components";
 
 export default function EditForm() {
-  const { productSelected, handleUpdate } = useContext(AdminContext);
+  const { productSelected, setProductSelected, handleUpdate } =
+    useContext(AdminContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    handleUpdate(name, value);
+    const productBeingUpdated = { ...productSelected, [name]: value };
+    setProductSelected(productBeingUpdated);
+    handleUpdate(productBeingUpdated);
   };
 
   return (
