@@ -7,6 +7,7 @@ export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
+  // states
   const [isModeAdmin, setIsModeAdmin] = useState(true);
   const [collapsed, setCollapsed] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState();
@@ -14,6 +15,7 @@ export const AdminContextProvider = ({ children }) => {
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState();
 
+  // comportements (gestionnaire d'éveniment or events handlers)
   const handleAdd = (newProduct) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
