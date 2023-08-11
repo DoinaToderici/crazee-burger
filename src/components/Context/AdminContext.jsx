@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { fakeMenu } from "../../fakeData";
 import { EMPTY_PRODUCT } from "../../enums/product";
-import { deepClone } from "../../utils/deepClone";
+import { deepClone } from "../../utils/array";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";

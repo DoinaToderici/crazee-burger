@@ -17,9 +17,9 @@ export default function Menu() {
     setCurrentTabSelected,
   } = useContext(AdminContext);
 
-  const handleClick = (idProductSelected) => {
-    const selectedProd = menu.find((item) => item.id === idProductSelected);
-    setProductSelected(selectedProd);
+  const handleClick = (idProductClicked) => {
+    const ProductClickedOn = menu.find((item) => item.id === idProductClicked);
+    setProductSelected(ProductClickedOn);
     setCollapsed(false);
     if (isModeAdmin) {
       setCurrentTabSelected("edit");
