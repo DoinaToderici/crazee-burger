@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { fakeMenu } from "../../fakeData";
 import { EMPTY_PRODUCT } from "../../enums/product";
+import { deepClone } from "../../utils/deepClone";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
@@ -14,13 +15,13 @@ export const AdminContextProvider = ({ children }) => {
   const [productSelected, setProductSelected] = useState();
 
   const handleAdd = (newProduct) => {
-    const copyMenu = [...menu];
+    const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
   };
 
   const handleDelete = (idCurentCard) => {
-    const copyMenu = [...menu];
+    const copyMenu = deepClone(menu);
     const menuUpdated = copyMenu.filter((product) => {
       return product.id !== idCurentCard;
     });
@@ -29,7 +30,7 @@ export const AdminContextProvider = ({ children }) => {
 
   const handleUpdate = (productBeingUpdated) => {
     // 1. Clone Menu
-    const cloneMenu = structuredClone(menu);
+    const cloneMenu = deepClone(menu);
 
     // 2. trouver l'index du produit dans le menu qui a le même id que le produit qui est dans le FormEdit
     const productToBeChangedInNewmenu = cloneMenu.findIndex(
@@ -41,10 +42,6 @@ export const AdminContextProvider = ({ children }) => {
 
     // 4. on SetMenu avec ce nouveau produit
     setMenu(cloneMenu);
-
-    /// DEEP CLONE METHOD
-    // 1. structuredClone(ARAY_NAME)
-    // 2. JSON.parse(JSON.stringify(ARAY_NAME))
   };
 
   const resetMenu = () => {
