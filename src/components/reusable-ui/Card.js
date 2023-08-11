@@ -17,6 +17,15 @@ export default function Card({
   const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
     useContext(AdminContext);
 
+  const handleDeleteCard = (e, id) => {
+    e.stopPropagation();
+    handleDelete(id);
+  };
+
+  const handleAddProduct = (e, id) => {
+    e.stopPropagation();
+  };
+
   return (
     <CardStyled
       className="produit"
@@ -29,8 +38,8 @@ export default function Card({
           <button
             className="delete-btn"
             aria-label="delete-button"
-            onClick={() => {
-              handleDelete(id);
+            onClick={(e) => {
+              handleDeleteCard(e, id);
             }}
           >
             <TiDelete className="icon" />
@@ -53,6 +62,9 @@ export default function Card({
                 label={"Ajouter"}
                 version="primaryMin"
                 className="primary-button"
+                onClick={(e) => {
+                  handleAddProduct(e, id);
+                }}
               />
             </div>
           </div>
