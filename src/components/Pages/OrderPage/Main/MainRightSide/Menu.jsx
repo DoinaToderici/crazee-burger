@@ -21,7 +21,9 @@ export default function Menu() {
     const selectedProd = menu.find((item) => item.id === idProductSelected);
     setProductSelected(selectedProd);
     setCollapsed(false);
-    setCurrentTabSelected("edit");
+    if (isModeAdmin) {
+      setCurrentTabSelected("edit");
+    }
   };
 
   return (

@@ -6,7 +6,7 @@ export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export const AdminContextProvider = ({ children }) => {
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [isModeAdmin, setIsModeAdmin] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState();
   const [menu, setMenu] = useState(fakeMenu.LARGE);
