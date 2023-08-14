@@ -14,8 +14,13 @@ export default function Card({
   isHoverable,
   isSelected,
 }) {
-  const { IMG_BY_DEFAULT, isModeAdmin, handleDelete } =
-    useContext(AdminContext);
+  const {
+    IMG_BY_DEFAULT,
+    isModeAdmin,
+    handleDelete,
+    setCollapsed,
+    setCurrentTabSelected,
+  } = useContext(AdminContext);
 
   const handleDeleteCard = (e, id) => {
     e.stopPropagation();
@@ -24,6 +29,10 @@ export default function Card({
 
   const handleAddProduct = (e, id) => {
     e.stopPropagation();
+    setCollapsed(false);
+    if (isModeAdmin) {
+      setCurrentTabSelected("add");
+    }
   };
 
   return (
