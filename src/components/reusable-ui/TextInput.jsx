@@ -4,7 +4,6 @@ import { theme } from "../../theme";
 
 const TextInput = React.forwardRef(
   ({ onChange, Icon, version, ...extraProps }, ref) => {
-    console.log(ref);
     return (
       <>
         <TextInputStyled version={version}>

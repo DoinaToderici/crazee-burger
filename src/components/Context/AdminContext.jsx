@@ -2,6 +2,7 @@ import { createContext, useRef, useState } from "react";
 import { fakeMenu } from "../../fakeData";
 import { EMPTY_PRODUCT } from "../../enums/product";
 import { deepClone } from "../../utils/array";
+import { getTabsConfig } from "../Pages/OrderPage/Main/MainRightSide/Admin/tabs.Config";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
@@ -28,6 +29,9 @@ export const AdminContextProvider = ({ children }) => {
     const menuUpdated = copyMenu.filter((product) => {
       return product.id !== idCurentCard;
     });
+
+    idCurentCard === productSelected.id && setProductSelected(EMPTY_PRODUCT);
+    editTitleInputRef.current.focus();
     setMenu(menuUpdated);
   };
 

@@ -27,12 +27,9 @@ export default function Card({
     handleDelete(id);
   };
 
-  const handleAddProduct = (e, id) => {
+  const handleAddProduct = (e) => {
     e.stopPropagation();
     setCollapsed(false);
-    if (isModeAdmin) {
-      setCurrentTabSelected("add");
-    }
   };
 
   return (
