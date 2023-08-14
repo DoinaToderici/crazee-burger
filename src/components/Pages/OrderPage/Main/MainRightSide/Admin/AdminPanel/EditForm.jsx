@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import HintMessage from "./HintMessage";
 import { AdminContext } from "../../../../../../Context/AdminContext";
 import TextInput from "../../../../../../reusable-ui/TextInput";
 import { inputsConfig } from "./inputsConfig";
 import ImgPreview from "./ImgPreview";
 import styled from "styled-components";
+import { theme } from "../../../../../../../theme";
 
 export default function EditForm() {
   const {
@@ -20,33 +20,31 @@ export default function EditForm() {
     setProductSelected(productBeingUpdated);
     handleUpdate(productBeingUpdated);
   };
-
   return (
     <EditFormStyled>
-      {productSelected ? (
-        <>
-          <ImgPreview newProduct={productSelected} />
-
-          <div className="input-fields">
-            {inputsConfig.map(({ Icon, placeholder, name }, key) => {
-              return (
-                <TextInput
-                  Icon={Icon}
-                  placeholder={placeholder}
-                  name={name}
-                  key={key}
-                  value={productSelected[name]}
-                  onChange={(e) => handleChange(e)}
-                  version="minimalist"
-                  ref={name === "title" ? editTitleInputRef : null}
-                />
-              );
-            })}
-          </div>
-        </>
-      ) : (
-        <HintMessage />
-      )}
+      <ImgPreview newProduct={productSelected} />
+      <div className="input-fields">
+        {inputsConfig.map(({ Icon, placeholder, name }, key) => {
+          return (
+            <TextInput
+              Icon={Icon}
+              placeholder={placeholder}
+              name={name}
+              key={key}
+              value={productSelected[name]}
+              onChange={(e) => handleChange(e)}
+              version="minimalist"
+              ref={name === "title" ? editTitleInputRef : null}
+            />
+          );
+        })}
+        <div className="submit">
+          <span className="sentence">
+            Cliquer sur un produit du menu pour le modifier{""}
+            <span className="live-update"> en temps réel</span>
+          </span>
+        </div>
+      </div>
     </EditFormStyled>
   );
 }
@@ -64,5 +62,14 @@ const EditFormStyled = styled.form`
     grid-template-rows: repeat(3, 1fr);
     gap: 8px;
     margin-left: 8px;
+
+    .sentence {
+      color: ${theme.colors.primary};
+      font-size: ${theme.fonts.size.SM};
+
+      .live-update {
+        text-decoration: underline;
+      }
+    }
   }
 `;
