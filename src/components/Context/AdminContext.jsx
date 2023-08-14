@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import { fakeMenu } from "../../fakeData";
 import { EMPTY_PRODUCT } from "../../enums/product";
 import { deepClone } from "../../utils/array";
@@ -14,6 +14,7 @@ export const AdminContextProvider = ({ children }) => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const editTitleInputRef = useRef();
 
   // comportements (gestionnaire d'éveniment or events handlers)
   const handleAdd = (newProduct) => {
@@ -68,6 +69,7 @@ export const AdminContextProvider = ({ children }) => {
     productSelected,
     setProductSelected,
     handleUpdate,
+    editTitleInputRef,
   };
 
   return (

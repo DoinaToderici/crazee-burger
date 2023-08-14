@@ -7,8 +7,12 @@ import ImgPreview from "./ImgPreview";
 import styled from "styled-components";
 
 export default function EditForm() {
-  const { productSelected, setProductSelected, handleUpdate } =
-    useContext(AdminContext);
+  const {
+    productSelected,
+    setProductSelected,
+    handleUpdate,
+    editTitleInputRef,
+  } = useContext(AdminContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +38,7 @@ export default function EditForm() {
                   value={productSelected[name]}
                   onChange={(e) => handleChange(e)}
                   version="minimalist"
+                  ref={name === "title" ? editTitleInputRef : null}
                 />
               );
             })}

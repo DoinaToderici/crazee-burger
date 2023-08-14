@@ -16,16 +16,19 @@ export default function Menu() {
     setProductSelected,
     setCollapsed,
     setCurrentTabSelected,
+    editTitleInputRef,
   } = useContext(AdminContext);
 
-  const handleClick = (idProductClicked) => {
+  const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
     const ProductClickedOn = menu.find((item) => item.id === idProductClicked);
-    setProductSelected(ProductClickedOn);
-    setCollapsed(false);
     if (isModeAdmin) {
-      setCurrentTabSelected("edit");
+      await setCurrentTabSelected("edit");
     }
+    await setProductSelected(ProductClickedOn);
+    await setCollapsed(false);
+
+    editTitleInputRef.current.focus();
   };
 
   const checkIfCardIsClicked = (productMenuId, productClickedId) => {
