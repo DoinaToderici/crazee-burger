@@ -4,26 +4,25 @@ import { theme } from "../../../../../../../theme";
 import Button from "../../../../../../reusable-ui/Button";
 import { FiCheck } from "react-icons/fi";
 
-export default function SubmiSection({ isAdded }) {
+export default function SubmitSection({ isSubmited }) {
   return (
-    <StyledSubmiSection>
+    <StyledSubmitSection>
       <Button label="Ajouter un nouveau produit au menu" version="success" />
-      {isAdded && (
+      {isSubmited && (
         <div className="check-msg">
           <FiCheck />
           <p> Ajouté avec succès !</p>
         </div>
       )}
-    </StyledSubmiSection>
+    </StyledSubmitSection>
   );
 }
 
-const StyledSubmiSection = styled.div`
+const StyledSubmitSection = styled.div`
   grid-area: 4 / 2 / 5 / 3;
   margin-top: 10px;
   display: flex;
   align-items: center;
-  margin: 8px 0 0 8px;
 
   .check-msg {
     display: flex;
