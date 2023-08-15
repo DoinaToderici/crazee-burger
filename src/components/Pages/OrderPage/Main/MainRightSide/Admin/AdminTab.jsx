@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import Tab from "../../../../../reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { AdminContext } from "../../../../../Context/AdminContext";
-import { tabsConfig } from "./tabs.Config";
+import { getTabsConfig } from "./tabs.Config";
 import styled from "styled-components";
 
 export default function AdminTab() {
   const { collapsed, setCollapsed, currentTabSelected, setCurrentTabSelected } =
     useContext(AdminContext);
 
-  const tabs = tabsConfig;
+  const tabs = getTabsConfig();
 
   const selectTab = (tabSelected) => {
     setCollapsed(false);

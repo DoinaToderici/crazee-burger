@@ -2,16 +2,20 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
-export default function TextInput({ onChange, Icon, version, ...extraProps }) {
-  return (
-    <>
-      <TextInputStyled version={version}>
-        {Icon && <span className="icon">{Icon}</span>}
-        <input onChange={onChange} {...extraProps} />
-      </TextInputStyled>
-    </>
-  );
-}
+const TextInput = React.forwardRef(
+  ({ onChange, Icon, version, ...extraProps }, ref) => {
+    return (
+      <>
+        <TextInputStyled version={version}>
+          {Icon && <span className="icon">{Icon}</span>}
+          <input onChange={onChange} {...extraProps} ref={ref} />
+        </TextInputStyled>
+      </>
+    );
+  }
+);
+
+export default TextInput;
 
 const TextInputStyled = styled.div`
   font-family: "Arial";

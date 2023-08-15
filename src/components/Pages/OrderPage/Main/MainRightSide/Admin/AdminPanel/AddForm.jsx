@@ -1,16 +1,13 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
 import { AdminContext } from "../../../../../../Context/AdminContext";
-import TextInput from "../../../../../../reusable-ui/TextInput";
-import { inputsConfig } from "./inputsConfig";
-import ImgPreview from "./ImgPreview";
-import SubmiSection from "./SubmiSection";
+import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
+import Form from "./Form";
+import SubmitSection from "./SubmitSection";
 
 export default function AddForm() {
   //state
-  const { handleAdd, newProduct, setNewProduct, EMPTY_PRODUCT } =
-    useContext(AdminContext);
-  const [isAdded, setIsAdded] = useState(false);
+  const { handleAdd, newProduct, setNewProduct } = useContext(AdminContext);
+  const [isSubmited, setIsSubmited] = useState(false);
 
   //functionement
   const handleSubmit = (e) => {
@@ -28,47 +25,14 @@ export default function AddForm() {
   };
 
   const displaySuccessMessage = () => {
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 2000);
+    setIsSubmited(true);
+    setTimeout(() => setIsSubmited(false), 2000);
   };
 
   // affichage
   return (
-    <AddFormStylde onSubmit={(e) => handleSubmit(e)}>
-      <ImgPreview newProduct={newProduct} />
-      <div className="input-fields">
-        {inputsConfig.map(({ Icon, placeholder, name }, key) => {
-          return (
-            <TextInput
-              Icon={Icon}
-              placeholder={placeholder}
-              name={name}
-              key={key}
-              value={newProduct[name]}
-              onChange={(e) => handleChange(e)}
-              version="minimalist"
-            />
-          );
-        })}
-      </div>
-      <SubmiSection isAdded={isAdded} />
-    </AddFormStylde>
+    <Form onSubmit={handleSubmit} onChange={handleChange} product={newProduct}>
+      <SubmitSection isSubmited={isSubmited} />
+    </Form>
   );
 }
-
-const AddFormStylde = styled.form`
-  display: grid;
-  max-height: 100%;
-  width: 70%;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
-
-  .input-fields {
-    display: grid;
-    grid-area: 1 / 2 / 4 / 3;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
-    margin-left: 8px;
-  }
-`;

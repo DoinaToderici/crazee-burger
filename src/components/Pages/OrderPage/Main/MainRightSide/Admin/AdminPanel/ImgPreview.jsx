@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../../theme";
 
-export default function ImgPreview({ newProduct }) {
+export default function ImgPreview({ imgPreview, imgPreviewAlt }) {
   return (
     <StyledImgPreview
-      className={`img-preview ${!newProduct.imageSource && "prev-not-img"}`}
+      className={`img-preview ${!imgPreview && "prev-not-img"}`}
     >
-      {newProduct.imageSource ? (
-        <img src={newProduct.imageSource} alt={newProduct.title} />
+      {imgPreview ? (
+        <img src={imgPreview} alt={imgPreviewAlt} />
       ) : (
         <span>Aucune image</span>
       )}

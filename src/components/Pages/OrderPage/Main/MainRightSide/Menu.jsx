@@ -8,7 +8,32 @@ import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
 
 export default function Menu() {
-  const { menu, resetMenu, isModeAdmin } = useContext(AdminContext);
+  const {
+    menu,
+    resetMenu,
+    isModeAdmin,
+    productSelected,
+    setProductSelected,
+    setCollapsed,
+    setCurrentTabSelected,
+    editTitleInputRef,
+  } = useContext(AdminContext);
+
+  const handleClick = async (idProductClicked) => {
+    if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
+    const ProductClickedOn = menu.find((item) => item.id === idProductClicked);
+    if (isModeAdmin) {
+      await setCurrentTabSelected("edit");
+    }
+    await setProductSelected(ProductClickedOn);
+    await setCollapsed(false);
+
+    editTitleInputRef.current.focus();
+  };
+
+  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
+    return productMenuId === productClickedId;
+  };
 
   return (
     <StyledMenu>
@@ -39,6 +64,9 @@ export default function Menu() {
               imageSource={imageSource}
               leftDescription={formatPrice(price)}
               key={id}
+              onClick={() => handleClick(id)}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfCardIsClicked(id, productSelected.id)}
             ></Card>
           );
         })
