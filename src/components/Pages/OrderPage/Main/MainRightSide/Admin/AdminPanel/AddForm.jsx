@@ -3,11 +3,12 @@ import { AdminContext } from "../../../../../../Context/AdminContext";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import Form from "./Form";
 import SubmitSection from "./SubmitSection";
+import { useSuccessMessage } from "../../../../../../../hooks/useSuccessMessage";
 
 export default function AddForm() {
   //state
   const { handleAdd, newProduct, setNewProduct } = useContext(AdminContext);
-  const [isSubmited, setIsSubmited] = useState(false);
+  const { isSubmited, displaySuccessMessage } = useSuccessMessage();
 
   //functionement
   const handleSubmit = (e) => {
@@ -22,11 +23,6 @@ export default function AddForm() {
       ...newProduct,
       [e.target.name]: e.target.value,
     });
-  };
-
-  const displaySuccessMessage = () => {
-    setIsSubmited(true);
-    setTimeout(() => setIsSubmited(false), 2000);
   };
 
   // affichage
