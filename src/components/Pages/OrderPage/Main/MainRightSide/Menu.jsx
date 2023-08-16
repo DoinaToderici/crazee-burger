@@ -82,6 +82,7 @@ const StyledMenu = styled.div`
   justify-items: center;
   padding: 50px 50px 150px;
   overflow-y: scroll;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 
   .empty-menu {
     display: flex;

@@ -14,13 +14,8 @@ export default function Card({
   isHoverable,
   isSelected,
 }) {
-  const {
-    IMG_BY_DEFAULT,
-    isModeAdmin,
-    handleDelete,
-    setCollapsed,
-    setCurrentTabSelected,
-  } = useContext(AdminContext);
+  const { IMG_BY_DEFAULT, isModeAdmin, handleDelete, setCollapsed } =
+    useContext(AdminContext);
 
   const handleDeleteCard = (e, id) => {
     e.stopPropagation();
