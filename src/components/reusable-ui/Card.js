@@ -6,26 +6,16 @@ import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 
 export default function Card({
-  id,
   title,
   imageSource,
   leftDescription,
   onClick,
   isHoverable,
   isSelected,
+  onDelete,
+  onAdd,
 }) {
-  const { IMG_BY_DEFAULT, isModeAdmin, handleDelete, setCollapsed } =
-    useContext(AdminContext);
-
-  const handleDeleteCard = (e, id) => {
-    e.stopPropagation();
-    handleDelete(id);
-  };
-
-  const handleAddProduct = (e) => {
-    e.stopPropagation();
-    setCollapsed(false);
-  };
+  const { IMG_BY_DEFAULT, isModeAdmin } = useContext(AdminContext);
 
   return (
     <CardStyled
@@ -39,9 +29,7 @@ export default function Card({
           <button
             className="delete-btn"
             aria-label="delete-button"
-            onClick={(e) => {
-              handleDeleteCard(e, id);
-            }}
+            onClick={onDelete}
           >
             <TiDelete className="icon" />
           </button>
@@ -63,9 +51,7 @@ export default function Card({
                 label={"Ajouter"}
                 version="primaryMin"
                 className="primary-button"
-                onClick={(e) => {
-                  handleAddProduct(e, id);
-                }}
+                onClick={onAdd}
               />
             </div>
           </div>

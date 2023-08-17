@@ -23,7 +23,7 @@ export const AdminContextProvider = ({ children }) => {
     handleUpdate,
     resetMenu,
   } = useMenu();
-  const { basket, handleDeleteBasketProduct } = useBasket();
+  const { basket, onAddToBasket, handleDeleteBasketProduct } = useBasket();
 
   const propsAdminContext = {
     isModeAdmin,
@@ -46,6 +46,7 @@ export const AdminContextProvider = ({ children }) => {
     editTitleInputRef,
     basket,
     handleDeleteBasketProduct,
+    onAddToBasket,
   };
 
   return (

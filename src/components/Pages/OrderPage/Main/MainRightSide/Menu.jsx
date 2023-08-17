@@ -12,11 +12,13 @@ export default function Menu() {
     menu,
     resetMenu,
     isModeAdmin,
+    handleDelete,
     productSelected,
     setProductSelected,
     setCollapsed,
     setCurrentTabSelected,
     editTitleInputRef,
+    onAddToBasket,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
@@ -33,6 +35,17 @@ export default function Menu() {
 
   const checkIfCardIsClicked = (productMenuId, productClickedId) => {
     return productMenuId === productClickedId;
+  };
+
+  const onAddButton = (e, idProductToAdd) => {
+    e.stopPropagation();
+    const productToAdd = menu.find((product) => product.id === idProductToAdd);
+    onAddToBasket(productToAdd);
+  };
+
+  const handleDeleteCard = (e, id) => {
+    e.stopPropagation();
+    handleDelete(id);
   };
 
   return (
@@ -67,6 +80,10 @@ export default function Menu() {
               onClick={() => handleClick(id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfCardIsClicked(id, productSelected.id)}
+              onAdd={(e) => onAddButton(e, id)}
+              onDelete={(e) => {
+                handleDeleteCard(e, id);
+              }}
             ></Card>
           );
         })
