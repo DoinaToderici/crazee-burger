@@ -3,18 +3,29 @@ import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 
 export default function EmptyMsgBasket() {
-  return <EmptyMsgBasketStyled>Votre commande est vide.</EmptyMsgBasketStyled>;
+  return (
+    <EmptyMsgBasketStyled>
+      <span className="empty-message">Votre commande est vide.</span>
+    </EmptyMsgBasketStyled>
+  );
 }
 const EmptyMsgBasketStyled = styled.div`
+  background: pink;
   display: flex;
-  height: calc(95vh - 10vh - 70px - 70px);
-  text-align: center;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  line-height: 2;
-  font-family: ${theme.fonts.family.stylish};
-  font-size: ${theme.fonts.size.P4};
-  color: ${theme.colors.greyBlue};
+  flex-direction: column;
+  height: 100%;
+
+  .empty-message {
+    display: flex;
+    height: calc(95vh - 10vh - 70px - 70px);
+    text-align: center;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    line-height: 2;
+    font-family: ${theme.fonts.family.stylish};
+    font-size: ${theme.fonts.size.P4};
+    color: ${theme.colors.greyBlue};
+  }
 `;

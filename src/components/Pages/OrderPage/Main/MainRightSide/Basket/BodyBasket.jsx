@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
-import { BasketContext } from "../../../../../Context/BasketContext";
 import EmptyMsgBasket from "./EmptyMsgBasket";
+import BasketList from "./BasketList";
 
-export default function BasketBody() {
-  const { prodAddeBasket } = useContext(BasketContext);
-
+export default function BasketBody({ basket }) {
+  const idEmptyBasket = basket.length === 0;
   return (
     <BasketBodyStyled>
-      <EmptyMsgBasket />
+      {idEmptyBasket ? <EmptyMsgBasket /> : <BasketList basket={basket} />}
     </BasketBodyStyled>
   );
 }
