@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeBasket";
-import { deepClone } from "../utils/array";
+import { deepClone, FindInArray } from "../utils/array";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.LARGE_WEIRD);
 
   const onAddToBasket = (idProductToAdd) => {
-    console.log(idProductToAdd);
+    const productToAddExistInBasket =
+      FindInArray(idProductToAdd, basket) !== undefined;
   };
 
   const handleDeleteBasketProduct = (id) => {

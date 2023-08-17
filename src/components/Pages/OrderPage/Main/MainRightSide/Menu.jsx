@@ -6,6 +6,7 @@ import { AdminContext } from "../../../../Context/AdminContext";
 import Card from "../../../../reusable-ui/Card";
 import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
+import { FindInArray } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -23,7 +24,7 @@ export default function Menu() {
 
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
-    const ProductClickedOn = menu.find((item) => item.id === idProductClicked);
+    const ProductClickedOn = FindInArray(idProductClicked, menu);
     if (isModeAdmin) {
       await setCurrentTabSelected("edit");
     }
@@ -39,7 +40,7 @@ export default function Menu() {
 
   const onAddButton = (e, idProductToAdd) => {
     e.stopPropagation();
-    const productToAdd = menu.find((product) => product.id === idProductToAdd);
+    const productToAdd = FindInArray(idProductToAdd, menu);
     onAddToBasket(productToAdd);
   };
 
