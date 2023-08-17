@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import BasketBody from "./BodyBasket";
 import Footer from "./Footer";
 import Total from "./Total";
 import { formatPrice } from "../../../../../../utils/maths";
-import { useBasket } from "../../../../../../hooks/useBasket";
 import { theme } from "../../../../../../theme";
+import { AdminContext } from "../../../../../Context/AdminContext";
 
 export default function Basket() {
-  const { basket } = useBasket();
+  const { basket } = useContext(AdminContext);
 
   return (
     <BasketStyled>

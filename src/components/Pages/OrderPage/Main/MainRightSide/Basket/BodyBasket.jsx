@@ -7,7 +7,7 @@ export default function BasketBody({ basket }) {
   const idEmptyBasket = basket.length === 0;
   return (
     <BasketBodyStyled>
-      {idEmptyBasket ? <EmptyMsgBasket /> : <BasketList basket={basket} />}
+      {idEmptyBasket ? <EmptyMsgBasket /> : <BasketList />}
     </BasketBodyStyled>
   );
 }

@@ -1,6 +1,7 @@
 import { createContext, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../enums/product";
 import { useMenu } from "../../hooks/useMenu";
+import { useBasket } from "../../hooks/useBasket";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
@@ -22,6 +23,7 @@ export const AdminContextProvider = ({ children }) => {
     handleUpdate,
     resetMenu,
   } = useMenu();
+  const { basket } = useBasket();
 
   const propsAdminContext = {
     isModeAdmin,
@@ -42,6 +44,7 @@ export const AdminContextProvider = ({ children }) => {
     setProductSelected,
     handleUpdate,
     editTitleInputRef,
+    basket,
   };
 
   return (
