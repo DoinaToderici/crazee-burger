@@ -13,20 +13,21 @@ export default function BasketList() {
 
   return (
     <BasketListStyled>
-      {basket.map((basketProduct, key) => (
-        <div className="basket-card" key={key}>
-          <Basketcard
-            {...basketProduct}
-            imageSource={
-              basketProduct.imageSource
-                ? basketProduct.imageSource
-                : IMG_BY_DEFAULT
-            }
-            onDelete={() => handleOnDelete(basketProduct.id)}
-            isModeAdmin={isModeAdmin}
-          />
-        </div>
-      ))}
+      {basket.length &&
+        basket.map((basketProduct, key) => (
+          <div className="basket-card" key={key}>
+            <Basketcard
+              {...basketProduct}
+              imageSource={
+                basketProduct.imageSource
+                  ? basketProduct.imageSource
+                  : IMG_BY_DEFAULT
+              }
+              onDelete={() => handleOnDelete(basketProduct.id)}
+              isModeAdmin={isModeAdmin}
+            />
+          </div>
+        ))}
     </BasketListStyled>
   );
 }

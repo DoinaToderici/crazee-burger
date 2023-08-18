@@ -10,3 +10,7 @@ export const FindInArray = (id, array) => {
   return array.find((item) => item.id === id);
   // !!!if item not exist in array, the function return undifined
 };
+export const FindIndex = (id, array) => {
+  return array.findIndex((item) => item.id === id);
+  // !!!if item not exist in array, the function return undifined
+};

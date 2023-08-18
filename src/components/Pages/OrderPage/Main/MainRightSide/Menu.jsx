@@ -19,7 +19,7 @@ export default function Menu() {
     setCollapsed,
     setCurrentTabSelected,
     editTitleInputRef,
-    onAddToBasket,
+    handleAddToBasket,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
@@ -38,10 +38,10 @@ export default function Menu() {
     return productMenuId === productClickedId;
   };
 
-  const onAddButton = (e, idProductToAdd) => {
+  const handleAddButton = (e, product) => {
     e.stopPropagation();
-    const productToAdd = FindInArray(idProductToAdd, menu);
-    onAddToBasket(productToAdd);
+    const productToAdd = FindInArray(product.id, menu);
+    handleAddToBasket(productToAdd);
   };
 
   const handleDeleteCard = (e, id) => {
@@ -70,20 +70,20 @@ export default function Menu() {
           </div>
         )
       ) : (
-        menu.map(({ id, title, imageSource, price }) => {
+        menu.map((product) => {
           return (
             <Card
-              id={id}
-              title={title}
-              imageSource={imageSource}
-              leftDescription={formatPrice(price)}
-              key={id}
-              onClick={() => handleClick(id)}
+              id={product.id}
+              title={product.title}
+              imageSource={product.imageSource}
+              leftDescription={formatPrice(product.price)}
+              key={product.id}
+              onClick={() => handleClick(product.id)}
               isHoverable={isModeAdmin}
-              isSelected={checkIfCardIsClicked(id, productSelected.id)}
-              onAdd={(e) => onAddButton(e, id)}
+              isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
+              onAdd={(e) => handleAddButton(e, product)}
               onDelete={(e) => {
-                handleDeleteCard(e, id);
+                handleDeleteCard(e, product.id);
               }}
             ></Card>
           );
