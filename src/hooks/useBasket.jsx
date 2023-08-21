@@ -32,8 +32,10 @@ export const useBasket = () => {
 
   const handleDeleteBasketProduct = (id) => {
     const copyBasket = deepClone(basket);
-    const producToDelete = copyBasket.filter((item) => item.id !== id);
-    setBasket(producToDelete);
+    const arrayWithoutDeletedProduct = copyBasket.filter(
+      (item) => item.id !== id
+    );
+    setBasket(arrayWithoutDeletedProduct);
   };
 
   const totalBasket = basket.reduce((total, basketProduct) => {

@@ -20,6 +20,7 @@ export default function Menu() {
     setCurrentTabSelected,
     editTitleInputRef,
     handleAddToBasket,
+    handleDeleteBasketProduct,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
@@ -47,6 +48,7 @@ export default function Menu() {
   const handleDeleteCard = (e, id) => {
     e.stopPropagation();
     handleDelete(id);
+    handleDeleteBasketProduct(id);
   };
 
   return (
