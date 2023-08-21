@@ -35,5 +35,12 @@ export const useBasket = () => {
     const producToDelete = copyBasket.filter((item) => item.id !== id);
     setBasket(producToDelete);
   };
-  return { basket, handleAddToBasket, handleDeleteBasketProduct };
+
+  const totalBasket = basket.reduce((total, basketProduct) => {
+    if (isNaN(basketProduct.price)) return total;
+    let totalproductPrice = basketProduct.price * basketProduct.quantity;
+    return total + totalproductPrice;
+  }, 0);
+
+  return { basket, handleAddToBasket, handleDeleteBasketProduct, totalBasket };
 };

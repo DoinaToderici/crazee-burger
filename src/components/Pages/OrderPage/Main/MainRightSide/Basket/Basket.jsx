@@ -8,11 +8,11 @@ import { theme } from "../../../../../../theme";
 import { AdminContext } from "../../../../../Context/AdminContext";
 
 export default function Basket() {
-  const { basket } = useContext(AdminContext);
+  const { basket, totalBasket } = useContext(AdminContext);
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(0)} />
+      <Total amountToPay={formatPrice(totalBasket)} />
       <BasketBody basket={basket} />
       <Footer />
     </BasketStyled>
