@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deepClone } from "../utils/array";
+import { deepClone, RemoveObjectById } from "../utils/array";
 import { fakeMenu } from "../fakeData";
 import { EMPTY_PRODUCT } from "../enums/product";
 
@@ -16,9 +16,7 @@ export const useMenu = () => {
 
   const handleDelete = (idCurentCard) => {
     const copyMenu = deepClone(menu);
-    const menuUpdated = copyMenu.filter((product) => {
-      return product.id !== idCurentCard;
-    });
+    const menuUpdated = RemoveObjectById(idCurentCard, copyMenu);
 
     idCurentCard === productSelected.id && setProductSelected(EMPTY_PRODUCT);
 

@@ -6,7 +6,7 @@ import { AdminContext } from "../../../../Context/AdminContext";
 import Card from "../../../../reusable-ui/Card";
 import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
-import { FindInArray } from "../../../../../utils/array";
+import { FindObjectById, isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -25,7 +25,7 @@ export default function Menu() {
 
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
-    const ProductClickedOn = FindInArray(idProductClicked, menu);
+    const ProductClickedOn = FindObjectById(idProductClicked, menu);
     if (isModeAdmin) {
       await setCurrentTabSelected("edit");
     }
@@ -41,7 +41,7 @@ export default function Menu() {
 
   const handleAddButton = (e, product) => {
     e.stopPropagation();
-    const productToAdd = FindInArray(product.id, menu);
+    const productToAdd = FindObjectById(product.id, menu);
     handleAddToBasket(productToAdd);
   };
 
@@ -53,7 +53,7 @@ export default function Menu() {
 
   return (
     <StyledMenu>
-      {menu.length === 0 ? (
+      {isEmpty(menu) ? (
         isModeAdmin ? (
           <div className="empty-menu">
             <h2>Le menu est vide ?</h2>

@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { fakeBasket } from "../fakeBasket";
-import { deepClone, FindInArray, FindIndex } from "../utils/array";
+import {
+  deepClone,
+  FindObjectById,
+  FindIndexById,
+  RemoveObjectById,
+} from "../utils/array";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
@@ -8,7 +13,7 @@ export const useBasket = () => {
   const handleAddToBasket = (productToAdd) => {
     const copyBasket = deepClone(basket);
     const productToAddExistInBasket =
-      FindInArray(productToAdd.id, basket) !== undefined;
+      FindObjectById(productToAdd.id, basket) !== undefined;
 
     //  1er cas : product do not exist in basket and we wont to add it
     if (!productToAddExistInBasket) {
@@ -20,7 +25,7 @@ export const useBasket = () => {
 
     // 2èm cas : product alredy exist in basket and  we need change only quantity
     if (productToAddExistInBasket) {
-      const indexOfBasketProductToIncrement = FindIndex(
+      const indexOfBasketProductToIncrement = FindIndexById(
         productToAdd.id,
         copyBasket
       );
@@ -32,9 +37,7 @@ export const useBasket = () => {
 
   const handleDeleteBasketProduct = (id) => {
     const copyBasket = deepClone(basket);
-    const arrayWithoutDeletedProduct = copyBasket.filter(
-      (item) => item.id !== id
-    );
+    const arrayWithoutDeletedProduct = RemoveObjectById(id, copyBasket);
     setBasket(arrayWithoutDeletedProduct);
   };
 
