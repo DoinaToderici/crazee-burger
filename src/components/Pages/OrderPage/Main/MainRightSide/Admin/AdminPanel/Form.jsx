@@ -24,6 +24,7 @@ const Form = React.forwardRef(
                   value={product[name]}
                   onChange={onChange}
                   version="minimalist"
+                  type={name === "price" ? "number" : ""}
                   ref={ref && name === "title" ? ref : null}
                 />
               );
