@@ -6,7 +6,7 @@ import { AdminContext } from "../../../../Context/AdminContext";
 import Card from "../../../../reusable-ui/Card";
 import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
-import { FindObjectById, isEmpty } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -15,25 +15,14 @@ export default function Menu() {
     isModeAdmin,
     handleDelete,
     productSelected,
-    setProductSelected,
-    setCollapsed,
-    setCurrentTabSelected,
-    editTitleInputRef,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleProductSelected,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
-    const ProductClickedOn = FindObjectById(idProductClicked, menu);
-
-    if (isModeAdmin) {
-      await setCurrentTabSelected("edit");
-    }
-    await setProductSelected(ProductClickedOn);
-    await setCollapsed(false);
-
-    editTitleInputRef.current.focus();
+    handleProductSelected(idProductClicked);
   };
 
   const checkIfCardIsClicked = (productMenuId, productClickedId) => {
@@ -80,7 +69,7 @@ export default function Menu() {
               imageSource={product.imageSource}
               leftDescription={formatPrice(product.price)}
               key={product.id}
-              onClick={() => handleClick(product.id)}
+              onClick={isModeAdmin ? () => handleClick(product.id) : null}
               isHoverable={isModeAdmin}
               isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
               onAdd={(e) => handleAddButton(e, product.id)}
