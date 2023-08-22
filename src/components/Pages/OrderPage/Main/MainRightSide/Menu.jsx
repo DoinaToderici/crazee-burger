@@ -18,15 +18,12 @@ export default function Menu() {
     handleAddToBasket,
     handleDeleteBasketProduct,
     handleProductSelected,
+    checkIfCardIsClicked,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
     handleProductSelected(idProductClicked);
-  };
-
-  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
-    return productMenuId === productClickedId;
   };
 
   const handleAddButton = (e, id) => {

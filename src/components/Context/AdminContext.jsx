@@ -36,6 +36,10 @@ export const AdminContextProvider = ({ children }) => {
     editTitleInputRef.current.focus();
   };
 
+  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
+    return productMenuId === productClickedId;
+  };
+
   const propsAdminContext = {
     isModeAdmin,
     setIsModeAdmin,
@@ -59,6 +63,7 @@ export const AdminContextProvider = ({ children }) => {
     handleDeleteBasketProduct,
     handleAddToBasket,
     handleProductSelected,
+    checkIfCardIsClicked,
   };
 
   return (

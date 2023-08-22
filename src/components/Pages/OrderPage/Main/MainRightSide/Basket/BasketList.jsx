@@ -11,7 +11,9 @@ export default function BasketList() {
     isModeAdmin,
     handleDeleteBasketProduct,
     IMG_BY_DEFAULT,
+    productSelected,
     handleProductSelected,
+    checkIfCardIsClicked,
   } = useContext(AdminContext);
 
   const handleOnDelete = (id) => {
@@ -40,7 +42,7 @@ export default function BasketList() {
                 }
                 quantity={basketProduct.quantity}
                 onDelete={() => handleOnDelete(menuProduct.id)}
-                isModeAdmin={isModeAdmin}
+                isClickable={isModeAdmin}
                 onClick={
                   isModeAdmin
                     ? (e) => {
@@ -48,6 +50,10 @@ export default function BasketList() {
                       }
                     : null
                 }
+                isSelected={checkIfCardIsClicked(
+                  menuProduct.id,
+                  productSelected.id
+                )}
               />
             </div>
           );
