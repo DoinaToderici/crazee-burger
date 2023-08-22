@@ -11,6 +11,7 @@ export default function Total() {
 
   const sumToPay = basket.reduce((total, basketProduct) => {
     const menuProduct = FindObjectById(basketProduct.id, menu);
+    if (isNaN(menuProduct.price)) return total;
     total += menuProduct.price * basketProduct.quantity;
     return total;
   }, 0);
