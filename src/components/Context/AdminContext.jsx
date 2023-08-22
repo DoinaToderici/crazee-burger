@@ -2,6 +2,7 @@ import { createContext, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../enums/product";
 import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
+import { FindObjectById } from "../../utils/array";
 
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
@@ -23,8 +24,21 @@ export const AdminContextProvider = ({ children }) => {
     handleUpdate,
     resetMenu,
   } = useMenu();
-  const { basket, handleAddToBasket, handleDeleteBasketProduct, totalBasket } =
-    useBasket();
+  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+
+  const handleProductSelected = async (idProductClicked) => {
+    const ProductClickedOn = FindObjectById(idProductClicked, menu);
+    if (isModeAdmin) {
+      await setCurrentTabSelected("edit");
+    }
+    await setProductSelected(ProductClickedOn);
+    await setCollapsed(false);
+    editTitleInputRef.current.focus();
+  };
+
+  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
+    return productMenuId === productClickedId;
+  };
 
   const propsAdminContext = {
     isModeAdmin,
@@ -48,7 +62,8 @@ export const AdminContextProvider = ({ children }) => {
     basket,
     handleDeleteBasketProduct,
     handleAddToBasket,
-    totalBasket,
+    handleProductSelected,
+    checkIfCardIsClicked,
   };
 
   return (

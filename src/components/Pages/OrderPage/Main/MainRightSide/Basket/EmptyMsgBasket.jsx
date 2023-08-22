@@ -10,7 +10,6 @@ export default function EmptyMsgBasket() {
   );
 }
 const EmptyMsgBasketStyled = styled.div`
-  background: pink;
   display: flex;
   flex-direction: column;
   height: 100%;

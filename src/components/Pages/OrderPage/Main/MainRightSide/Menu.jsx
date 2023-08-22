@@ -6,7 +6,7 @@ import { AdminContext } from "../../../../Context/AdminContext";
 import Card from "../../../../reusable-ui/Card";
 import Button from "../../../../reusable-ui/Button";
 import { theme } from "../../../../../theme";
-import { FindInArray } from "../../../../../utils/array";
+import { isEmpty } from "../../../../../utils/array";
 
 export default function Menu() {
   const {
@@ -15,34 +15,20 @@ export default function Menu() {
     isModeAdmin,
     handleDelete,
     productSelected,
-    setProductSelected,
-    setCollapsed,
-    setCurrentTabSelected,
-    editTitleInputRef,
     handleAddToBasket,
     handleDeleteBasketProduct,
+    handleProductSelected,
+    checkIfCardIsClicked,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
-    const ProductClickedOn = FindInArray(idProductClicked, menu);
-    if (isModeAdmin) {
-      await setCurrentTabSelected("edit");
-    }
-    await setProductSelected(ProductClickedOn);
-    await setCollapsed(false);
-
-    editTitleInputRef.current.focus();
+    handleProductSelected(idProductClicked);
   };
 
-  const checkIfCardIsClicked = (productMenuId, productClickedId) => {
-    return productMenuId === productClickedId;
-  };
-
-  const handleAddButton = (e, product) => {
+  const handleAddButton = (e, id) => {
     e.stopPropagation();
-    const productToAdd = FindInArray(product.id, menu);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(id);
   };
 
   const handleDeleteCard = (e, id) => {
@@ -53,7 +39,7 @@ export default function Menu() {
 
   return (
     <StyledMenu>
-      {menu.length === 0 ? (
+      {isEmpty(menu) ? (
         isModeAdmin ? (
           <div className="empty-menu">
             <h2>Le menu est vide ?</h2>
@@ -80,10 +66,10 @@ export default function Menu() {
               imageSource={product.imageSource}
               leftDescription={formatPrice(product.price)}
               key={product.id}
-              onClick={() => handleClick(product.id)}
+              onClick={isModeAdmin ? () => handleClick(product.id) : null}
               isHoverable={isModeAdmin}
               isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
-              onAdd={(e) => handleAddButton(e, product)}
+              onAdd={(e) => handleAddButton(e, product.id)}
               onDelete={(e) => {
                 handleDeleteCard(e, product.id);
               }}

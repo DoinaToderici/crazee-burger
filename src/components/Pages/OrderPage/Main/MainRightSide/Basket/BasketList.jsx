@@ -2,32 +2,62 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { AdminContext } from "../../../../../Context/AdminContext";
 import Basketcard from "./BasketCard";
+import { FindObjectById } from "../../../../../../utils/array";
 
 export default function BasketList() {
-  const { basket, isModeAdmin, handleDeleteBasketProduct, IMG_BY_DEFAULT } =
-    useContext(AdminContext);
+  const {
+    basket,
+    menu,
+    isModeAdmin,
+    handleDeleteBasketProduct,
+    IMG_BY_DEFAULT,
+    productSelected,
+    handleProductSelected,
+    checkIfCardIsClicked,
+  } = useContext(AdminContext);
 
   const handleOnDelete = (id) => {
     handleDeleteBasketProduct(id);
   };
 
+  const handleOnClick = (e, idBasketProduct) => {
+    e.preventDefault();
+    handleProductSelected(idBasketProduct);
+  };
+
   return (
     <BasketListStyled>
       {basket.length &&
-        basket.map((basketProduct, key) => (
-          <div className="basket-card" key={key}>
-            <Basketcard
-              {...basketProduct}
-              imageSource={
-                basketProduct.imageSource
-                  ? basketProduct.imageSource
-                  : IMG_BY_DEFAULT
-              }
-              onDelete={() => handleOnDelete(basketProduct.id)}
-              isModeAdmin={isModeAdmin}
-            />
-          </div>
-        ))}
+        basket.map((basketProduct, key) => {
+          const menuProduct = FindObjectById(basketProduct.id, menu);
+
+          return (
+            <div className="basket-card" key={key}>
+              <Basketcard
+                {...menuProduct}
+                imageSource={
+                  menuProduct.imageSource
+                    ? menuProduct.imageSource
+                    : IMG_BY_DEFAULT
+                }
+                quantity={basketProduct.quantity}
+                onDelete={() => handleOnDelete(menuProduct.id)}
+                isClickable={isModeAdmin}
+                onClick={
+                  isModeAdmin
+                    ? (e) => {
+                        handleOnClick(e, menuProduct.id);
+                      }
+                    : null
+                }
+                isSelected={checkIfCardIsClicked(
+                  menuProduct.id,
+                  productSelected.id
+                )}
+              />
+            </div>
+          );
+        })}
     </BasketListStyled>
   );
 }

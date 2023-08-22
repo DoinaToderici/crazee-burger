@@ -6,11 +6,21 @@ export const deepClone = (arrayName) => {
   return JSON.parse(JSON.stringify(arrayName));
 };
 
-export const FindInArray = (id, array) => {
+export const FindObjectById = (id, array) => {
   return array.find((item) => item.id === id);
   // !!!if item not exist in array, the function return undifined
 };
-export const FindIndex = (id, array) => {
+
+export const FindIndexById = (id, array) => {
   return array.findIndex((item) => item.id === id);
   // !!!if item not exist in array, the function return undifined
+};
+
+export const RemoveObjectById = (id, array) => {
+  return array.filter((item) => item.id !== id);
+  // !!!if item not exist in array, the function return undifined
+};
+
+export const isEmpty = (array) => {
+  return array.length === 0;
 };
