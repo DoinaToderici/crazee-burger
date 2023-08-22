@@ -26,6 +26,7 @@ export default function Menu() {
   const handleClick = async (idProductClicked) => {
     if (!isModeAdmin) return; // si je ne suis pas en mode admin et que je click sur un produit, je veux que ça n'impacte pas ma selection de mod admin
     const ProductClickedOn = FindObjectById(idProductClicked, menu);
+
     if (isModeAdmin) {
       await setCurrentTabSelected("edit");
     }
@@ -39,10 +40,9 @@ export default function Menu() {
     return productMenuId === productClickedId;
   };
 
-  const handleAddButton = (e, product) => {
+  const handleAddButton = (e, id) => {
     e.stopPropagation();
-    const productToAdd = FindObjectById(product.id, menu);
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(id);
   };
 
   const handleDeleteCard = (e, id) => {
@@ -83,7 +83,7 @@ export default function Menu() {
               onClick={() => handleClick(product.id)}
               isHoverable={isModeAdmin}
               isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
-              onAdd={(e) => handleAddButton(e, product)}
+              onAdd={(e) => handleAddButton(e, product.id)}
               onDelete={(e) => {
                 handleDeleteCard(e, product.id);
               }}

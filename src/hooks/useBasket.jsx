@@ -10,23 +10,23 @@ import {
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
-  const handleAddToBasket = (productToAdd) => {
+  const handleAddToBasket = (idProductToAdd) => {
     const copyBasket = deepClone(basket);
-    const productToAddExistInBasket =
-      FindObjectById(productToAdd.id, basket) !== undefined;
+    const productToAddExistInBasket = FindObjectById(idProductToAdd, basket);
 
-    //  1er cas : product do not exist in basket and we wont to add it
-    if (!productToAddExistInBasket) {
-      const newBasketProduct = { ...productToAdd, quantity: 1 };
-      const updatedBasket = [newBasketProduct, ...copyBasket];
-      setBasket(updatedBasket);
-      return;
-    }
+    // 1. Product not exist in basket
+    const newProductBasket = {
+      id: idProductToAdd,
+      quantity: 1,
+    };
+
+    const newBasket = [newProductBasket, ...copyBasket];
+    setBasket(newBasket);
 
     // 2èm cas : product alredy exist in basket and  we need change only quantity
     if (productToAddExistInBasket) {
       const indexOfBasketProductToIncrement = FindIndexById(
-        productToAdd.id,
+        idProductToAdd,
         copyBasket
       );
       copyBasket[indexOfBasketProductToIncrement].quantity += 1;
@@ -41,11 +41,5 @@ export const useBasket = () => {
     setBasket(arrayWithoutDeletedProduct);
   };
 
-  const totalBasket = basket.reduce((total, basketProduct) => {
-    if (isNaN(basketProduct.price)) return total;
-    let totalproductPrice = basketProduct.price * basketProduct.quantity;
-    return total + totalproductPrice;
-  }, 0);
-
-  return { basket, handleAddToBasket, handleDeleteBasketProduct, totalBasket };
+  return { basket, handleAddToBasket, handleDeleteBasketProduct };
 };
