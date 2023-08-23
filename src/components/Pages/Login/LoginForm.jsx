@@ -6,22 +6,24 @@ import { theme } from "../../../theme";
 import { IoChevronForwardOutline } from "react-icons/io5";
 import Button from "../../reusable-ui/Button";
 import TextInput from "../../reusable-ui/TextInput";
+import { authentificateUser } from "../../../api/user";
 
 export default function LoginForm() {
   //hooks
   const navigate = useNavigate();
 
   //state
-  const [inputData, setInputData] = useState("");
+  const [user, setUser] = useState("");
 
   //comportement
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInputData("");
-    navigate(`/order/${inputData}`);
+    authentificateUser(user);
+    setUser("");
+    navigate(`/order/${user}`);
   };
 
-  const handleChange = (e) => setInputData(e.target.value);
+  const handleChange = (e) => setUser(e.target.value);
 
   //affichage
   return (
@@ -34,7 +36,7 @@ export default function LoginForm() {
         </div>
         <div>
           <TextInput
-            value={inputData}
+            value={user}
             onChange={handleChange}
             Icon={<HiUserCircle />}
             placeholder="Entrez votre prénom"
