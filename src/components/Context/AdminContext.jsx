@@ -1,8 +1,9 @@
-import { createContext, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { EMPTY_PRODUCT } from "../../enums/product";
 import { useMenu } from "../../hooks/useMenu";
 import { useBasket } from "../../hooks/useBasket";
 import { FindObjectById } from "../../utils/array";
+import { getMenu } from "../../api/products";
 export const AdminContext = createContext();
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
@@ -27,6 +28,9 @@ export const AdminContextProvider = ({ children }) => {
     setUrlParam,
   } = useMenu();
   const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+
+  /// COMPORTEMENT
+
   const handleProductSelected = async (idProductClicked) => {
     const ProductClickedOn = FindObjectById(idProductClicked, menu);
     if (isModeAdmin) {
@@ -40,6 +44,17 @@ export const AdminContextProvider = ({ children }) => {
   const checkIfCardIsClicked = (productMenuId, productClickedId) => {
     return productMenuId === productClickedId;
   };
+
+  const initializeMenu = async () => {
+    if (urlParam) {
+      const menuFromDB = await getMenu(urlParam);
+      setMenu(menuFromDB);
+    }
+  };
+
+  useEffect(() => {
+    initializeMenu();
+  }, [urlParam]);
 
   const propsAdminContext = {
     isModeAdmin,

@@ -5,7 +5,7 @@ import { EMPTY_PRODUCT } from "../enums/product";
 import { createProduct } from "../api/products";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(fakeMenu.LARGE);
+  const [menu, setMenu] = useState(fakeMenu.SMALL);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [urlParam, setUrlParam] = useState("");
 
@@ -22,7 +22,7 @@ export const useMenu = () => {
     const menuUpdated = RemoveObjectById(idCurentCard, copyMenu);
 
     idCurentCard === productSelected.id && setProductSelected(EMPTY_PRODUCT);
-
+    createProduct(urlParam, menuUpdated);
     setMenu(menuUpdated);
   };
 
@@ -43,7 +43,7 @@ export const useMenu = () => {
   };
 
   const resetMenu = () => {
-    setMenu(fakeMenu.LARGE);
+    setMenu(fakeMenu.SMALL);
   };
 
   return {
