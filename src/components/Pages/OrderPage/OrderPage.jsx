@@ -2,9 +2,19 @@ import styled from "styled-components";
 import Main from "./Main/Main";
 import NavBar from "./NavBar/NavBar";
 import { theme } from "../../../theme";
+import { useParams } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { AdminContext } from "../../Context/AdminContext";
 
 export default function OrderPage() {
+  const { setUrlParam } = useContext(AdminContext);
+
   //params from url
+  const { userName } = useParams();
+
+  useEffect(() => {
+    setUrlParam(userName);
+  }, []);
 
   return (
     <OrderStyled>

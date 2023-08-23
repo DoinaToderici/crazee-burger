@@ -2,16 +2,19 @@ import { useState } from "react";
 import { deepClone, RemoveObjectById } from "../utils/array";
 import { fakeMenu } from "../fakeData";
 import { EMPTY_PRODUCT } from "../enums/product";
+import { createProduct } from "../api/products";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState(fakeMenu.LARGE);
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
+  const [urlParam, setUrlParam] = useState("");
 
   // comportements (gestionnaire d'éveniment or events handlers)
   const handleAdd = (newProduct) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
+    createProduct(urlParam, menuUpdated);
   };
 
   const handleDelete = (idCurentCard) => {
@@ -52,5 +55,7 @@ export const useMenu = () => {
     handleDelete,
     handleUpdate,
     resetMenu,
+    urlParam,
+    setUrlParam,
   };
 };
