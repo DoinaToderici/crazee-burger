@@ -5,7 +5,7 @@ import { EMPTY_PRODUCT } from "../enums/product";
 import { createProduct } from "../api/products";
 
 export const useMenu = () => {
-  const [menu, setMenu] = useState(fakeMenu.SMALL);
+  const [menu, setMenu] = useState();
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
   const [urlParam, setUrlParam] = useState("");
 
