@@ -44,6 +44,7 @@ export const useMenu = () => {
 
   const resetMenu = () => {
     setMenu(fakeMenu.SMALL);
+    syncBothMenu(urlParam, fakeMenu.SMALL);
   };
 
   return {
