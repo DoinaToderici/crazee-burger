@@ -7,6 +7,7 @@ import Card from "../../../../../reusable-ui/Card";
 import { isEmpty } from "../../../../../../utils/array";
 import EmptyAdminMenu from "./EmptyMsgMenu/EmptyAdminMenu";
 import EmptyClientMenu from "./EmptyMsgMenu/EmptyClientMenu";
+import Loader from "./EmptyMsgMenu/Loader";
 
 export default function Menu() {
   const {
@@ -38,7 +39,7 @@ export default function Menu() {
   };
 
   //affichage
-  if (menu === undefined) return <span>chargement...</span>;
+  if (menu === undefined) return <Loader />;
   if (isEmpty(menu)) {
     if (isModeAdmin) return <EmptyAdminMenu onReset={resetMenu} />;
     return <EmptyClientMenu />;
