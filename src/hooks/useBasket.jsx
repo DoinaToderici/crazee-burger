@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { fakeBasket } from "../fakeBasket";
 import {
   deepClone,
   FindObjectById,
@@ -10,7 +9,7 @@ import {
 import { setLocalStorage } from "../utils/window";
 
 export const useBasket = () => {
-  const [basket, setBasket] = useState(fakeBasket.EMPTY);
+  const [basket, setBasket] = useState([]);
   const { username } = useParams();
 
   const handleAddToBasket = (idProductToAdd) => {
@@ -46,5 +45,5 @@ export const useBasket = () => {
     setBasket(arrayWithoutDeletedProduct);
   };
 
-  return { basket, handleAddToBasket, handleDeleteBasketProduct };
+  return { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct };
 };

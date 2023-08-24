@@ -10,6 +10,7 @@ import { FindObjectById } from "../../../utils/array";
 import { getMenu } from "../../../api/products";
 import { useParams } from "react-router-dom";
 import AdminContext from "../../Context/AdminContext";
+import { getLocalStorage } from "../../../utils/window";
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function OrderPage() {
@@ -49,13 +50,22 @@ export default function OrderPage() {
     return productMenuId === productClickedId;
   };
 
-  const initializeMenu = async (username) => {
-    const menuFromDB = await getMenu(username);
-    setMenu(menuFromDB);
+  const initializeMenu = async () => {
+    const menuReceivedFromDB = await getMenu(username);
+    setMenu(menuReceivedFromDB);
+  };
+
+  const initializeBasket = async () => {
+    const basketReceivedFromLocalStorage = getLocalStorage(username);
+    setBasket(basketReceivedFromLocalStorage);
   };
 
   useEffect(() => {
-    initializeMenu(username, setMenu, setBasket);
+    initializeMenu();
+  }, []);
+
+  useEffect(() => {
+    initializeBasket();
   }, []);
 
   const propsAdminContext = {

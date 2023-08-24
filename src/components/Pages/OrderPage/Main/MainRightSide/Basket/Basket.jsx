@@ -3,16 +3,21 @@ import styled from "styled-components";
 import BasketBody from "./BodyBasket";
 import Footer from "./Footer";
 import Total from "./Total";
-import { formatPrice } from "../../../../../../utils/maths";
+import { calculateSumToPay, formatPrice } from "../../../../../../utils/maths";
 import { theme } from "../../../../../../theme";
 import AdminContext from "../../../../../Context/AdminContext";
+import Loader from "../Menu/EmptyMsgMenu/Loader";
 
 export default function Basket() {
-  const { basket, totalBasket } = useContext(AdminContext);
+  const { basket, menu } = useContext(AdminContext);
+  if (menu === undefined) {
+    return <Loader />;
+  }
+  const sumToPay = calculateSumToPay(basket, menu);
 
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(totalBasket)} />
+      <Total amountToPay={formatPrice(sumToPay)} />
       <BasketBody basket={basket} />
       <Footer />
     </BasketStyled>
