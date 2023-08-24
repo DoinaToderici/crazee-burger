@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Total from "./Total";
 import { formatPrice } from "../../../../../../utils/maths";
 import { theme } from "../../../../../../theme";
-import { AdminContext } from "../../../../../Context/AdminContext";
+import AdminContext from "../../../../../Context/AdminContext";
 
 export default function Basket() {
   const { basket, totalBasket } = useContext(AdminContext);

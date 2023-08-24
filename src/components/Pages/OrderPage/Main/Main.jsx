@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Menu from "./MainRightSide/Menu/Menu";
 import Admin from "./MainRightSide/Admin/Admin";
-import { AdminContext } from "../../../Context/AdminContext";
 import Basket from "./MainRightSide/Basket/Basket";
+import AdminContext from "../../../Context/AdminContext";
 
 export default function Main() {
   const { isModeAdmin } = useContext(AdminContext);

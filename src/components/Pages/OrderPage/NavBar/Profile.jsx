@@ -3,15 +3,15 @@ import { BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../../theme/index";
-import { AdminContext } from "../../../Context/AdminContext";
+import AdminContext from "../../../Context/AdminContext";
 
 export default function Profile() {
-  const { setIsModeAdmin, urlParam } = useContext(AdminContext);
+  const { setIsModeAdmin, username } = useContext(AdminContext);
   return (
     <ProfileStyled>
       <div className="info">
         <p>
-          Hey, <b>{urlParam}</b>
+          Hey, <b>{username}</b>
         </p>
         <Link to="/login">
           <div className="description" onClick={() => setIsModeAdmin(false)}>

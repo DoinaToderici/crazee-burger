@@ -3,18 +3,19 @@ import { deepClone, RemoveObjectById } from "../utils/array";
 import { fakeMenu } from "../fakeData";
 import { EMPTY_PRODUCT } from "../enums/product";
 import { syncBothMenu } from "../api/products";
+import { useParams } from "react-router-dom";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
   const [productSelected, setProductSelected] = useState(EMPTY_PRODUCT);
-  const [urlParam, setUrlParam] = useState("");
+  const { username } = useParams();
 
   // comportements (gestionnaire d'éveniment or events handlers)
   const handleAdd = (newProduct) => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
-    syncBothMenu(urlParam, menuUpdated);
+    syncBothMenu(username, menuUpdated);
   };
 
   const handleDelete = (idCurentCard) => {
@@ -22,7 +23,7 @@ export const useMenu = () => {
     const menuUpdated = RemoveObjectById(idCurentCard, copyMenu);
 
     idCurentCard === productSelected.id && setProductSelected(EMPTY_PRODUCT);
-    syncBothMenu(urlParam, menuUpdated);
+    syncBothMenu(username, menuUpdated);
     setMenu(menuUpdated);
   };
 
@@ -39,13 +40,13 @@ export const useMenu = () => {
     cloneMenu[productToBeChangedInNewmenu] = productBeingUpdated;
 
     // 4. on SetMenu avec ce nouveau produit
-    syncBothMenu(urlParam, cloneMenu);
+    syncBothMenu(username, cloneMenu);
     setMenu(cloneMenu);
   };
 
   const resetMenu = () => {
     setMenu(fakeMenu.SMALL);
-    syncBothMenu(urlParam, fakeMenu.SMALL);
+    syncBothMenu(username, fakeMenu.SMALL);
   };
 
   return {
@@ -57,7 +58,5 @@ export const useMenu = () => {
     handleDelete,
     handleUpdate,
     resetMenu,
-    urlParam,
-    setUrlParam,
   };
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { AdminContext } from "../../../../../../Context/AdminContext";
+import AdminContext from "../../../../../../Context/AdminContext";
 import Form from "./Form";
 import ModifProductMsg from "./ModifProductMsg";
 import SentenceEditForm from "./SentenceEditForm";

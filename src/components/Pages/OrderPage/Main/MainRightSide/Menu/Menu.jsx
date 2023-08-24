@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { formatPrice } from "../../../../../../utils/maths";
-import { AdminContext } from "../../../../../Context/AdminContext";
+import AdminContext from "../../../../../Context/AdminContext";
 
 import Card from "../../../../../reusable-ui/Card";
 import { isEmpty } from "../../../../../../utils/array";

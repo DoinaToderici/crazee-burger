@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Tab from "../../../../../reusable-ui/Tab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { AdminContext } from "../../../../../Context/AdminContext";
+import AdminContext from "../../../../../Context/AdminContext";
 import { getTabsConfig } from "./tabs.Config";
 import styled from "styled-components";
 

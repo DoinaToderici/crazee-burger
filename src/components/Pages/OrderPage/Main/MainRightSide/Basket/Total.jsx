@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 import FooterHeader from "./FooterHeader";
-import { AdminContext } from "../../../../../Context/AdminContext";
+import AdminContext from "../../../../../Context/AdminContext";
 import { formatPrice } from "../../../../../../utils/maths";
 import { FindObjectById } from "../../../../../../utils/array";
 

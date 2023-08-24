@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import { AdminContext } from "../Context/AdminContext";
+import AdminContext from "../Context/AdminContext";
 import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
 
