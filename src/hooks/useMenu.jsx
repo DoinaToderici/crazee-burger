@@ -39,6 +39,7 @@ export const useMenu = () => {
     cloneMenu[productToBeChangedInNewmenu] = productBeingUpdated;
 
     // 4. on SetMenu avec ce nouveau produit
+    syncBothMenu(urlParam, cloneMenu);
     setMenu(cloneMenu);
   };
 
