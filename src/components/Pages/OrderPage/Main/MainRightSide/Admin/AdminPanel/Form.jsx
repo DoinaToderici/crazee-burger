@@ -5,7 +5,7 @@ import TextInput from "../../../../../../reusable-ui/TextInput";
 import ImgPreview from "./ImgPreview";
 
 const Form = React.forwardRef(
-  ({ onSubmit, onChange, product, children }, ref) => {
+  ({ onSubmit, onChange, onFocus, onBlur, product, children }, ref) => {
     return (
       <FormStyled onSubmit={onSubmit}>
         <>
@@ -23,6 +23,8 @@ const Form = React.forwardRef(
                   key={key}
                   value={product[name]}
                   onChange={onChange}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
                   version="minimalist"
                   type={name === "price" ? "number" : ""}
                   ref={ref && name === "title" ? ref : null}
