@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { fakeBasket } from "../fakeBasket";
 import {
   deepClone,
@@ -6,9 +7,11 @@ import {
   FindIndexById,
   RemoveObjectById,
 } from "../utils/array";
+import { setLocalStorage } from "../utils/window";
 
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
+  const { username } = useParams();
 
   const handleAddToBasket = (idProductToAdd) => {
     const copyBasket = deepClone(basket);
@@ -22,6 +25,7 @@ export const useBasket = () => {
 
     const newBasket = [newProductBasket, ...copyBasket];
     setBasket(newBasket);
+    setLocalStorage(username, newBasket);
 
     // 2èm cas : product alredy exist in basket and  we need change only quantity
     if (productToAddExistInBasket) {
@@ -31,6 +35,7 @@ export const useBasket = () => {
       );
       copyBasket[indexOfBasketProductToIncrement].quantity += 1;
       setBasket(copyBasket);
+      setLocalStorage(username, copyBasket);
       return;
     }
   };

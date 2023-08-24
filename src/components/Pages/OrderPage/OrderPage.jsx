@@ -82,6 +82,7 @@ export default function OrderPage() {
     handleAddToBasket,
     handleProductSelected,
     checkIfCardIsClicked,
+    username,
   };
 
   return (
