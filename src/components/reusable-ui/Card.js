@@ -21,8 +21,8 @@ export default function Card({
     <CardStyled
       className="produit"
       onClick={onClick}
-      isHoverable={isHoverable}
       selected={isSelected}
+      isHoverable={isHoverable}
     >
       <div className="card">
         {isModeAdmin && (
@@ -173,8 +173,11 @@ const hoverableStyled = css`
   :hover {
     transform: scale(1.05);
     transition: ease-out 0.4s;
-    box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
+
+    .card {
+      box-shadow: ${theme.shadows.orangeHighlight};
+    }
   }
 `;
 
