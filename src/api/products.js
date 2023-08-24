@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
-export const createProduct = (userId, menuUpdated) => {
+export const syncBothMenu = (userId, menuUpdated) => {
   const location = doc(db, "users", userId);
   const content = {
     userName: userId,

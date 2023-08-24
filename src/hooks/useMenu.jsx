@@ -2,7 +2,7 @@ import { useState } from "react";
 import { deepClone, RemoveObjectById } from "../utils/array";
 import { fakeMenu } from "../fakeData";
 import { EMPTY_PRODUCT } from "../enums/product";
-import { createProduct } from "../api/products";
+import { syncBothMenu } from "../api/products";
 
 export const useMenu = () => {
   const [menu, setMenu] = useState();
@@ -14,7 +14,7 @@ export const useMenu = () => {
     const copyMenu = deepClone(menu);
     const menuUpdated = [newProduct, ...copyMenu];
     setMenu(menuUpdated);
-    createProduct(urlParam, menuUpdated);
+    syncBothMenu(urlParam, menuUpdated);
   };
 
   const handleDelete = (idCurentCard) => {
@@ -22,7 +22,7 @@ export const useMenu = () => {
     const menuUpdated = RemoveObjectById(idCurentCard, copyMenu);
 
     idCurentCard === productSelected.id && setProductSelected(EMPTY_PRODUCT);
-    createProduct(urlParam, menuUpdated);
+    syncBothMenu(urlParam, menuUpdated);
     setMenu(menuUpdated);
   };
 
