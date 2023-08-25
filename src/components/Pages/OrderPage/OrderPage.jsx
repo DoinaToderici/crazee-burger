@@ -7,10 +7,9 @@ import { EMPTY_PRODUCT } from "../../../enums/product";
 import { useMenu } from "../../../hooks/useMenu";
 import { useBasket } from "../../../hooks/useBasket";
 import { FindObjectById } from "../../../utils/array";
-import { getMenu } from "../../../api/products";
 import { useParams } from "react-router-dom";
 import AdminContext from "../../Context/AdminContext";
-import { getLocalStorage } from "../../../utils/window";
+import { initialiseUserSession } from "./helpers/initialiseUserSession";
 const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function OrderPage() {
@@ -36,6 +35,12 @@ export default function OrderPage() {
   const { username } = useParams();
 
   /// COMPORTEMENT
+
+  // initialise user session
+  useEffect(() => {
+    initialiseUserSession(username, setMenu, setBasket);
+  }, []);
+
   const handleProductSelected = async (idProductClicked) => {
     const ProductClickedOn = FindObjectById(idProductClicked, menu);
     if (isModeAdmin) {
@@ -49,25 +54,6 @@ export default function OrderPage() {
   const checkIfCardIsClicked = (productMenuId, productClickedId) => {
     return productMenuId === productClickedId;
   };
-
-  const initializeMenu = async () => {
-    const menuReceivedFromDB = await getMenu(username);
-    setMenu(menuReceivedFromDB);
-  };
-
-  const initializeBasket = async () => {
-    const basketReceivedFromLocalStorage = getLocalStorage(username);
-    setBasket(basketReceivedFromLocalStorage);
-  };
-
-  const initialiseUserSession = async () => {
-    await initializeMenu();
-    initializeBasket();
-  };
-
-  useEffect(() => {
-    initialiseUserSession();
-  }, []);
 
   const propsAdminContext = {
     isModeAdmin,
