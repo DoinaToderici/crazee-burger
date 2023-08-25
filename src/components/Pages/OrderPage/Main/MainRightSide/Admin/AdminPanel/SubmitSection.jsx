@@ -10,7 +10,7 @@ export default function SubmitSection({ isSubmited }) {
       <Button label="Ajouter un nouveau produit au menu" version="success" />
       {isSubmited && (
         <div className="check-msg">
-          <FiCheck />
+          <FiCheck width="20px" />
           <p> Ajouté avec succès !</p>
         </div>
       )}

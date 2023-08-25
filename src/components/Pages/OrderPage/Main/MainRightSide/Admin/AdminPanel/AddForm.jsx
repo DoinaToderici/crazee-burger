@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AdminContext } from "../../../../../../Context/AdminContext";
+import AdminContext from "../../../../../../Context/AdminContext";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import Form from "./Form";
 import SubmitSection from "./SubmitSection";

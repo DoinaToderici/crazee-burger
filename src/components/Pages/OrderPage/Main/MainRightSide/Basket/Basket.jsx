@@ -1,19 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import BasketBody from "./BodyBasket";
 import Footer from "./Footer";
 import Total from "./Total";
-import { formatPrice } from "../../../../../../utils/maths";
 import { theme } from "../../../../../../theme";
-import { AdminContext } from "../../../../../Context/AdminContext";
 
 export default function Basket() {
-  const { basket, totalBasket } = useContext(AdminContext);
-
   return (
     <BasketStyled>
-      <Total amountToPay={formatPrice(totalBasket)} />
-      <BasketBody basket={basket} />
+      <Total />
+      <BasketBody />
       <Footer />
     </BasketStyled>
   );

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { FaUserSecret } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import ToastAdmin from "./ToastAdmin";
-import { AdminContext } from "../../../Context/AdminContext";
+import AdminContext from "../../../Context/AdminContext";
 
 export default function NavbarRightSide() {
   const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);

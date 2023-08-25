@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { EMPTY_PRODUCT } from "../../../../../../../enums/product";
 import { theme } from "../../../../../../../theme";
-import { AdminContext } from "../../../../../../Context/AdminContext";
+import AdminContext from "../../../../../../Context/AdminContext";
 import { getTabSelected, getTabsConfig } from "../tabs.Config";
 
 export default function AdminPanel() {

@@ -1,21 +1,14 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import { calculateSumToPay, formatPrice } from "../../../../../../utils/maths";
+import AdminContext from "../../../../../Context/AdminContext";
 import FooterHeader from "./FooterHeader";
-import { AdminContext } from "../../../../../Context/AdminContext";
-import { formatPrice } from "../../../../../../utils/maths";
-import { FindObjectById } from "../../../../../../utils/array";
 
 export default function Total() {
-  const { menu, basket } = useContext(AdminContext);
+  const { basket, menu } = useContext(AdminContext);
 
-  const sumToPay = basket.reduce((total, basketProduct) => {
-    const menuProduct = FindObjectById(basketProduct.id, menu);
-    if (isNaN(menuProduct.price)) return total;
-    total += menuProduct.price * basketProduct.quantity;
-    return total;
-  }, 0);
-
+  const sumToPay = calculateSumToPay(basket, menu);
   return (
     <FooterHeader>
       <TotalStyled>
