@@ -1,13 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
+import { calculateSumToPay, formatPrice } from "../../../../../../utils/maths";
+import AdminContext from "../../../../../Context/AdminContext";
 import FooterHeader from "./FooterHeader";
 
-export default function Total({ amountToPay }) {
+export default function Total() {
+  const { basket, menu } = useContext(AdminContext);
+
+  const sumToPay = calculateSumToPay(basket, menu);
   return (
     <FooterHeader>
       <TotalStyled>
         <span className="total">Total</span>
-        <span className="amount">{amountToPay}</span>
+        <span className="amount">{formatPrice(sumToPay)}</span>
       </TotalStyled>
     </FooterHeader>
   );

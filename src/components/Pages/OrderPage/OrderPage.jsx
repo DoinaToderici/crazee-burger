@@ -60,12 +60,13 @@ export default function OrderPage() {
     setBasket(basketReceivedFromLocalStorage);
   };
 
-  useEffect(() => {
-    initializeMenu();
-  }, []);
+  const initialiseUserSession = async () => {
+    await initializeMenu();
+    initializeBasket();
+  };
 
   useEffect(() => {
-    initializeBasket();
+    initialiseUserSession();
   }, []);
 
   const propsAdminContext = {

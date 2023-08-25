@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
 
-export default function EmptyMsgBasket() {
+export default function EmptyMsgBasket({ isLoading }) {
   return (
     <EmptyMsgBasketStyled>
-      <span className="empty-message">Votre commande est vide.</span>
+      <span className="empty-message">{isLoading}</span>
     </EmptyMsgBasketStyled>
   );
 }

@@ -8,7 +8,6 @@ import { isEmpty } from "../../../../../../utils/array";
 import EmptyAdminMenu from "./EmptyMsgMenu/EmptyAdminMenu";
 import EmptyClientMenu from "./EmptyMsgMenu/EmptyClientMenu";
 import Loader from "./EmptyMsgMenu/Loader";
-import { setLocalStorage } from "../../../../../../utils/window";
 
 export default function Menu() {
   const {
@@ -21,7 +20,6 @@ export default function Menu() {
     handleDeleteBasketProduct,
     handleProductSelected,
     checkIfCardIsClicked,
-    username,
   } = useContext(AdminContext);
 
   const handleClick = async (idProductClicked) => {
