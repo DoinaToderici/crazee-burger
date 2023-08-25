@@ -42,6 +42,7 @@ export const useBasket = () => {
   const handleDeleteBasketProduct = (id) => {
     const copyBasket = deepClone(basket);
     const arrayWithoutDeletedProduct = RemoveObjectById(id, copyBasket);
+    setLocalStorage(username, arrayWithoutDeletedProduct);
     setBasket(arrayWithoutDeletedProduct);
   };
 
