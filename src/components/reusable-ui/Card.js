@@ -64,6 +64,7 @@ export default function Card({
 const CardStyled = styled.div`
   ${({ isHoverable }) => isHoverable && hoverableStyled}
   border-radius: ${theme.borderRadius.extraRound};
+  height: fit-content;
 
   .card {
     background: ${theme.colors.white};
