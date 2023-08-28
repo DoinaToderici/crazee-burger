@@ -14,7 +14,7 @@ const IMG_BY_DEFAULT = "/images/coming-soon.png";
 
 export default function OrderPage() {
   // states
-  const [isModeAdmin, setIsModeAdmin] = useState(true);
+  const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState();
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
