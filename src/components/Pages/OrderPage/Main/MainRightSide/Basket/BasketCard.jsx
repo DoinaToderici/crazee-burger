@@ -36,9 +36,6 @@ export default function BasketCard({
           </div>
           <span className="price">{formatPrice(price)}</span>
         </div>
-        {/* <div className="quantity">
-          <span>x {quantity}</span>
-        </div> */}
         <CasinoEffect count={"x " + quantity} className="quantity" />
       </div>
     </BasketCardStyled>

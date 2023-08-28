@@ -6,6 +6,7 @@ import Admin from "./MainRightSide/Admin/Admin";
 import Basket from "./MainRightSide/Basket/Basket";
 import AdminContext from "../../../Context/AdminContext";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { AdminPanelAnimation } from "../../../../theme/animations";
 
 export default function Main() {
   const { isModeAdmin } = useContext(AdminContext);
@@ -42,17 +43,7 @@ const MainStyled = styled.div`
     position relative;
     overflow-y: hidden;
     display: grid;
-
   }
 
-  .animation-admin-panel-appear {
-    opacity : 0.1;
-    transform: translateY(100%);
-
-    &.animation-admin-panel-appear-active {
-      opacity : 1;
-    transform: translateY(0%);
-    transition : 1s;
-    }
-  }
+  ${AdminPanelAnimation}
 `;
