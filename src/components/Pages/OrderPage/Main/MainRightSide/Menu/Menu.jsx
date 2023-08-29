@@ -2,12 +2,13 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { formatPrice } from "../../../../../../utils/maths";
 import AdminContext from "../../../../../Context/AdminContext";
-
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Card from "../../../../../reusable-ui/Card";
 import { isEmpty } from "../../../../../../utils/array";
 import EmptyAdminMenu from "./EmptyMsgMenu/EmptyAdminMenu";
 import EmptyClientMenu from "./EmptyMsgMenu/EmptyClientMenu";
 import Loader from "./EmptyMsgMenu/Loader";
+import { menuCardAnimation } from "../../../../../../theme/animations";
 
 export default function Menu() {
   const {
@@ -46,26 +47,31 @@ export default function Menu() {
   }
 
   return (
-    <MenuStyled>
+    <TransitionGroup component={MenuStyled}>
       {menu.map((product) => {
         return (
-          <Card
-            id={product.id}
-            title={product.title}
-            imageSource={product.imageSource}
-            leftDescription={formatPrice(product.price)}
+          <CSSTransition
             key={product.id}
-            onClick={isModeAdmin ? () => handleClick(product.id) : null}
-            isHoverable={isModeAdmin}
-            isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
-            onAdd={(e) => handleAddButton(e, product.id)}
-            onDelete={(e) => {
-              handleDeleteCard(e, product.id);
-            }}
-          ></Card>
+            timeout={300}
+            classNames={"animation-card-menu"}
+          >
+            <Card
+              id={product.id}
+              title={product.title}
+              imageSource={product.imageSource}
+              leftDescription={formatPrice(product.price)}
+              onClick={isModeAdmin ? () => handleClick(product.id) : null}
+              isHoverable={isModeAdmin}
+              isSelected={checkIfCardIsClicked(product.id, productSelected.id)}
+              onAdd={(e) => handleAddButton(e, product.id)}
+              onDelete={(e) => {
+                handleDeleteCard(e, product.id);
+              }}
+            ></Card>
+          </CSSTransition>
         );
       })}
-    </MenuStyled>
+    </TransitionGroup>
   );
 }
 
@@ -77,4 +83,6 @@ const MenuStyled = styled.div`
   padding: 50px 50px 150px;
   overflow-y: scroll;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+
+  ${menuCardAnimation}
 `;

@@ -60,3 +60,26 @@ export const BasketCardAnimation = css`
     }
   }
 `;
+
+export const menuCardAnimation = css`
+  .animation-card-menu-enter {
+    opacity: 0.01;
+    transform: translateX(-125px);
+
+    &.animation-card-menu-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 300ms ease-out;
+    }
+  }
+
+  .animation-card-menu-exit {
+    opacity: 1;
+    transform: translateX(0);
+
+    &.animation-card-menu-exit-active {
+      opacity: 0.01;
+      transition: all 300ms ease-out;
+    }
+  }
+`;
