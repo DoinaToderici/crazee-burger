@@ -4,6 +4,7 @@ import { theme } from "../../theme";
 import AdminContext from "../Context/AdminContext";
 import Button from "./Button";
 import { TiDelete } from "react-icons/ti";
+import { fadeInFromRight } from "../../theme/animations";
 
 export default function Card({
   title,
@@ -90,6 +91,7 @@ const CardStyled = styled.div`
       padding: 0;
       border: none;
       background: none;
+      animation: ${fadeInFromRight} 0.5s ease-out;
 
       .icon {
         /* border: 1px solid blue; */

@@ -21,4 +21,5 @@ const BasketStyled = styled.div`
   flex-direction: column;
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   height: 85vh;
+  overflow: hidden;
 `;

@@ -5,6 +5,8 @@ import Menu from "./MainRightSide/Menu/Menu";
 import Admin from "./MainRightSide/Admin/Admin";
 import Basket from "./MainRightSide/Basket/Basket";
 import AdminContext from "../../../Context/AdminContext";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { AdminPanelAnimation } from "../../../../theme/animations";
 
 export default function Main() {
   const { isModeAdmin } = useContext(AdminContext);
@@ -14,7 +16,17 @@ export default function Main() {
       <Basket />
       <div className="menu-and-admin">
         <Menu />
-        {isModeAdmin && <Admin />}
+        {isModeAdmin && (
+          <TransitionGroup>
+            <CSSTransition
+              appear={true}
+              timeout={1000}
+              classNames={"animation-admin-panel"}
+            >
+              <Admin />
+            </CSSTransition>
+          </TransitionGroup>
+        )}
       </div>
     </MainStyled>
   );
@@ -31,6 +43,7 @@ const MainStyled = styled.div`
     position relative;
     overflow-y: hidden;
     display: grid;
-
   }
+
+  ${AdminPanelAnimation}
 `;

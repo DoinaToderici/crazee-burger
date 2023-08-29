@@ -3,6 +3,7 @@ import { theme } from "../../../../../../theme";
 import { MdDeleteForever } from "react-icons/md";
 import { formatPrice } from "../../../../../../utils/maths";
 import styled, { css } from "styled-components";
+import CasinoEffect from "../../../../../reusable-ui/CasinoEffect";
 
 export default function BasketCard({
   title,
@@ -35,9 +36,7 @@ export default function BasketCard({
           </div>
           <span className="price">{formatPrice(price)}</span>
         </div>
-        <div className="quantity">
-          <span>x {quantity}</span>
-        </div>
+        <CasinoEffect count={"x " + quantity} className="quantity" />
       </div>
     </BasketCardStyled>
   );
@@ -75,6 +74,7 @@ const BasketCardStyled = styled.div`
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 70% 1fr;
+    align-items: center;
     font-size: ${theme.fonts.size.P0};
     color: ${theme.colors.primary};
 
