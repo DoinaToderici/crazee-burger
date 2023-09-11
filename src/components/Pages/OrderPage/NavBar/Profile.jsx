@@ -33,23 +33,41 @@ const ProfileStyled = styled.div`
   min-width: 100px;
   padding-left: 50px;
 
+  @media (max-width: ${theme.medias.sm}) {
+    padding-left: 10px;
+  }
+
   .info {
     text-align: right;
     margin-right: 10px;
+
+    @media (max-width: ${theme.medias.sm}) {
+      margin-right: 5px;
+      line-height: 1;
+    }
+
     p {
       margin: 0;
       color: ${theme.colors.greyBlue};
+
+      @media (max-width: ${theme.medias.sm}) {
+        font-size: 0.8rem;
+      }
+
       b {
         color: ${theme.colors.primary};
       }
     }
+
     a {
       text-decoration: none;
+
       .description {
         &:hover {
           text-decoration: underline;
           color: ${theme.colors.greyDark};
         }
+
         small {
           font-size: ${theme.fonts.size.XXS};
           color: ${theme.colors.greyBlue};
@@ -63,11 +81,14 @@ const ProfileStyled = styled.div`
   }
 
   .picture {
-    /* border: 1px solid red; */
     height: auto;
     display: flex;
     height: 100%;
     font-size: ${theme.fonts.size.P4};
     color: ${theme.colors.greyBlue};
+
+    @media (max-width: ${theme.medias.sm}) {
+      font-size: 1.5rem;
+    }
   }
 `;

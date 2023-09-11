@@ -12,6 +12,8 @@ export default function ToastAdmin() {
 }
 
 const ToastAdminStyled = styled.div`
+  position: absolute;
+
   .toaster {
     max-width: 300px;
   }

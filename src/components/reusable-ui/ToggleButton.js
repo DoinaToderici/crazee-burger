@@ -28,10 +28,9 @@ export default function ToggleButton({
 }
 
 const ToggleButtonStyled = styled.div`
-  /* border: 1px solid red; */
-
   display: flex;
   margin-right: 10px;
+
   input[type="checkbox"] {
     // Hides the square box but keeps the core "toggle functionality"
     &.toggle {
@@ -51,6 +50,16 @@ const ToggleButtonStyled = styled.div`
       cursor: pointer;
       box-sizing: border-box;
       transition: all 500ms ease;
+
+      @media (max-width: ${theme.medias.sm}) {
+        width: 150px;
+        height: 30px;
+      }
+
+      @media (max-width: ${theme.medias.xs}) {
+        width: 60px;
+        height: 25px;
+      }
     }
 
     // the small round circle
@@ -62,6 +71,16 @@ const ToggleButtonStyled = styled.div`
       width: 30px;
       transition: all 500ms ease;
       z-index: 3;
+
+      @media (max-width: ${theme.medias.sm}) {
+        height: 20px;
+        width: 20px;
+      }
+
+      @media (max-width: ${theme.medias.xs}) {
+        height: 15px;
+        width: 15px;
+      }
     }
 
     // text inside the switch button (for checked and unchecked)
@@ -76,6 +95,15 @@ const ToggleButtonStyled = styled.div`
       transform: translateY(-50%);
       text-overflow: ellipsis;
       overflow: hidden;
+
+      @media (max-width: ${theme.medias.sm}) {
+        font-size: 7px;
+        left: -13px;
+      }
+
+      @media (max-width: ${theme.medias.xs}) {
+        display: none;
+      }
     }
 
     // outside box
@@ -101,6 +129,14 @@ const ToggleButtonStyled = styled.div`
       opacity: 1;
       color: ${theme.colors.primary};
       font-weight: ${theme.fonts.weights.bold};
+
+      @media (max-width: ${theme.medias.sm}) {
+        right: -13px;
+      }
+
+      @media (max-width: ${theme.medias.xs}) {
+        right: -2px;
+      }
     }
 
     // small circle when not checked
@@ -123,12 +159,24 @@ const ToggleButtonStyled = styled.div`
       opacity: 1;
       color: ${theme.colors.dark};
       letter-spacing: 0px;
+
+      @media (max-width: ${theme.medias.sm}) {
+        left: -13px;
+      }
     }
 
     // small circle when checked
     &.toggle:checked + label:before {
       left: 162px;
       background-color: ${theme.colors.primary};
+
+      @media (max-width: ${theme.medias.sm}) {
+        left: 122px;
+      }
+
+      @media (max-width: ${theme.medias.xs}) {
+        left: 38px;
+      }
     }
   }
 `;
