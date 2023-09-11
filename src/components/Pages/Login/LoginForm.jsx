@@ -17,9 +17,9 @@ export default function LoginForm() {
   const [user, setUser] = useState("");
 
   //comportement
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    authentificateUser(user);
+    await authentificateUser(user);
     setUser("");
     navigate(`/order/${user}`);
   };
