@@ -1,6 +1,7 @@
 import Logo from "../../reusable-ui/Logo";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
+import { theme } from "../../../theme";
 
 export default function LoginPage() {
   return (
@@ -24,5 +25,9 @@ const LoginPageStyled = styled.div`
 
   .logo {
     transform: scale(2.5);
+
+    @media (max-width: ${theme.medias.sm}) {
+      transform: scale(1.3);
+    }
   }
 `;

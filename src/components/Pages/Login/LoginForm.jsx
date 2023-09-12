@@ -56,9 +56,13 @@ export default function LoginForm() {
 const LoginFormStyled = styled.form`
   text-align: center;
   max-width: 500px;
-  min-width: 400px;
+  width: 400px;
   margin: 0px auto;
   padding: 40px ${theme.spacing.lg};
   border-radius: ${theme.borderRadius.round};
   font-family: "Amatic SC", cursive;
+
+  @media (max-width: ${theme.medias.md}) {
+    max-width: 100%;
+  }
 `;

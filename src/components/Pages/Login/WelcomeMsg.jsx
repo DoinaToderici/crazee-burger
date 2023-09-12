@@ -21,11 +21,19 @@ const WelcomeMsgStyled = styled.div`
   h1 {
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P5};
+
+    @media (max-width: ${theme.medias.sm}) {
+      font-size: ${theme.fonts.size.P4};
+    }
   }
 
   h2 {
     margin: 20px 10px 10px;
     color: ${theme.colors.white};
     font-size: ${theme.fonts.size.P4};
+
+    @media (max-width: ${theme.medias.sm}) {
+      font-size: ${theme.fonts.size.P3};
+    }
   }
 `;
