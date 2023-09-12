@@ -22,4 +22,12 @@ const BasketStyled = styled.div`
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   height: 85vh;
   overflow: hidden;
+
+  @media (max-width: ${theme.medias.md}) {
+    height: calc(95vh - 18vh);
+  }
+
+  @media (max-width: ${theme.medias.sm}) {
+    display: none;
+  }
 `;

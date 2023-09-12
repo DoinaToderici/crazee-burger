@@ -4,6 +4,7 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import AdminContext from "../../../../../Context/AdminContext";
 import { getTabsConfig } from "./tabs.Config";
 import styled from "styled-components";
+import { theme } from "../../../../../../theme";
 
 export default function AdminTab() {
   const { collapsed, setCollapsed, currentTabSelected, setCurrentTabSelected } =
@@ -41,4 +42,8 @@ export default function AdminTab() {
 
 const AdminTabStyled = styled.div`
   padding: 0 70px;
+
+  @media (max-width: ${theme.medias.md}) {
+    padding: 0;
+  }
 `;

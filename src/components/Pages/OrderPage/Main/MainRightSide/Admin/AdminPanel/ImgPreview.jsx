@@ -20,6 +20,14 @@ const StyledImgPreview = styled.div`
   grid-area: 1 / 1 / 4 / 2;
   text-align: center;
 
+  @media (max-width: ${theme.medias.sm}) {
+    grid-area: 1 / 1 / 2 / 4;
+
+    img {
+      max-height: 75px;
+    }
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;

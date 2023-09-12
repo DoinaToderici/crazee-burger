@@ -17,8 +17,8 @@ const ButtonStyled = styled.button`
   justify-content: center;
   align-items: center;
   position: relative;
-  white-space: nowrap;
   text-decoration: none;
+  max-width: 100%;
   line-height: 1;
   border-radius: 5px;
   font-size: ${theme.fonts.size.P0};
@@ -64,8 +64,8 @@ const extraPrimaryStyle = css`
 `;
 
 const extraSuccessStyle = css`
-  width: 60%;
-  margin-top: 8px;
+  width: fit-content;
+  margin-top: 6px;
   background-color: ${theme.colors.success};
   border: 1px solid ${theme.colors.success};
   font-weight: ${theme.fonts.weights.bold};

@@ -24,4 +24,9 @@ const AdminPanelStyled = styled.div`
   box-shadow: ${theme.shadows.subtle};
   box-sizing: border-box;
   padding: 30px 5%;
+
+  @media (max-width: ${theme.medias.sm}) {
+    height: fit-content;
+    padding: 20px 5%;
+  }
 `;

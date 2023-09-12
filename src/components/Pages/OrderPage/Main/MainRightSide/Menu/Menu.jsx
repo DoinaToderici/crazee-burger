@@ -9,6 +9,7 @@ import EmptyAdminMenu from "./EmptyMsgMenu/EmptyAdminMenu";
 import EmptyClientMenu from "./EmptyMsgMenu/EmptyClientMenu";
 import Loader from "./EmptyMsgMenu/Loader";
 import { menuCardAnimation } from "../../../../../../theme/animations";
+import { theme } from "../../../../../../theme";
 
 export default function Menu() {
   const {
@@ -83,6 +84,11 @@ const MenuStyled = styled.div`
   padding: 50px 50px 150px;
   overflow-y: scroll;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+
+  @media (max-width: ${theme.medias.sm}) {
+    padding: 35px 0;
+    height: 80vh;
+  }
 
   ${menuCardAnimation}
 `;

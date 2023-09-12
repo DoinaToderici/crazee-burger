@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { inputsConfig } from "./inputsConfig";
 import TextInput from "../../../../../../reusable-ui/TextInput";
 import ImgPreview from "./ImgPreview";
+import { theme } from "../../../../../../../theme";
 
 const Form = React.forwardRef(
   ({ onSubmit, onChange, onFocus, onBlur, product, children }, ref) => {
@@ -48,6 +49,10 @@ const FormStyled = styled.form`
   grid-template-columns: 1fr 3fr;
   grid-template-rows: repeat(4, 1fr);
 
+  @media (max-width: ${theme.medias.lg}) {
+    width: 100%;
+  }
+
   .input-fields {
     display: grid;
     grid-area: 1 / 2 / 4 / 3;
@@ -55,6 +60,11 @@ const FormStyled = styled.form`
     grid-template-rows: repeat(3, 1fr);
     gap: 8px;
     margin-left: 8px;
+
+    @media (max-width: ${theme.medias.sm}) {
+      grid-area: 2 / 1 / 4 / 3;
+      margin: 8px 0 0;
+    }
   }
 
   .form-footer {
@@ -63,5 +73,10 @@ const FormStyled = styled.form`
     position: relative;
     top: 3px;
     margin-left: 8px;
+
+    @media (max-width: ${theme.medias.sm}) {
+      margin-left: 0;
+      grid-area: 4 / -1 / -1 / -4;
+    }
   }
 `;

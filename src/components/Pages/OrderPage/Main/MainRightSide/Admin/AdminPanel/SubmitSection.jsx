@@ -19,16 +19,20 @@ export default function SubmitSection({ isSubmited }) {
 }
 
 const StyledSubmitSection = styled.div`
-  grid-area: 4 / 2 / 5 / 3;
+  grid-area: 4 / 1 / 5 / 3;
   margin-top: 10px;
-  display: flex;
-  align-items: center;
+
+  @media (max-width: ${theme.medias.sm}) {
+    margin-top: 0;
+  }
 
   .check-msg {
+    text-align: center;
+    position: absolute;
     display: flex;
     align-items: center;
     color: ${theme.colors.success};
-    margin: 0 0 0 10px;
+    margin: 5px auto 0;
 
     p {
       margin: 0 0 0 5px;

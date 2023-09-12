@@ -19,6 +19,21 @@ const TabStyled = styled.div`
   padding: 0 22px;
   margin-left: 1px;
 
+  @media (max-width: ${theme.medias.md}) {
+    padding: 0 10px;
+  }
+
+  @media (max-width: ${theme.medias.sm}) {
+    display: flex;
+    justify-content: center;
+    display: flex;
+    padding: 0 5px;
+  }
+
+  @media (max-width: ${theme.medias.xs}) {
+    padding: 0 40px;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,5 +75,15 @@ const TabStyled = styled.div`
 
   .label {
     margin-left: 13px;
+
+    @media (max-width: ${theme.medias.sm}) {
+      width: max-content;
+      font-size: ${theme.fonts.size.P0};
+      margin-left: 5px;
+    }
+
+    @media (max-width: ${theme.medias.xs}) {
+      display: none;
+    }
   }
 `;
