@@ -5,7 +5,7 @@ const colors = {
   background_white: "#f5f5f7",
   background_dark: "#292729",
   primary: "#ffa01b",
-  green: "green",
+  green: "#45b445",
   success: "#60bd4f",
   red: "#e25549",
   redSecondary: "#c4151c",
@@ -70,6 +70,15 @@ const shadows = {
   cardBasket: "-4px 4px 15px 0 rgb(0 0 0 /20%)",
 };
 
+const medias = {
+  xs: "320px",
+  sm: "425px",
+  md: "768px",
+  lg: "1024px",
+  xl: "1440px",
+  xxl: "2560px",
+};
+
 export const theme = {
   colors,
   fonts,
@@ -77,4 +86,5 @@ export const theme = {
   borderRadius,
   shadows,
   spacing,
+  medias,
 };

@@ -56,6 +56,10 @@ const BasketCardStyled = styled.div`
 
   position: relative;
 
+  @media (max-width: ${theme.medias.md}) {
+    padding: 5px;
+  }
+
   .image {
     box-sizing: border-box;
     height: 70px;

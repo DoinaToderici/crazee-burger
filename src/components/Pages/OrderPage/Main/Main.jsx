@@ -39,6 +39,14 @@ const MainStyled = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
 
+  @media (max-width: ${theme.medias.md}) {
+    height: calc(95vh - 18vh);
+    }
+
+  @media (max-width: ${theme.medias.sm}) {
+    grid-template-columns: 1fr;
+    }
+
   .menu-and-admin {
     position relative;
     overflow-y: hidden;

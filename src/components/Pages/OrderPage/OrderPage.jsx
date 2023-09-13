@@ -30,8 +30,16 @@ export default function OrderPage() {
     productSelected,
     setProductSelected,
   } = useMenu();
-  const { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct } =
-    useBasket();
+  const {
+    basket,
+    setBasket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    visibleBasket,
+    setVisibleBasket,
+    handleToggleBasket,
+    totalQuantity,
+  } = useBasket();
   const { username } = useParams();
 
   /// COMPORTEMENT
@@ -80,6 +88,10 @@ export default function OrderPage() {
     handleProductSelected,
     checkIfCardIsClicked,
     username,
+    visibleBasket,
+    setVisibleBasket,
+    handleToggleBasket,
+    totalQuantity,
   };
 
   return (

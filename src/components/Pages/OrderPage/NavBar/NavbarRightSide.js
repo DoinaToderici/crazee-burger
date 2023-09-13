@@ -7,6 +7,8 @@ import { FaUserSecret } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
 import ToastAdmin from "./ToastAdmin";
 import AdminContext from "../../../Context/AdminContext";
+import styled from "styled-components";
+import { theme } from "../../../../theme";
 
 export default function NavbarRightSide() {
   const { isModeAdmin, setIsModeAdmin } = useContext(AdminContext);
@@ -31,16 +33,28 @@ export default function NavbarRightSide() {
 
   return (
     <>
-      <div className="d-flex align-items-center">
+      <NavbarRightSideStyled>
         <ToggleButton
           isChecked={isModeAdmin}
           labelIfChecked="Désactiver le mode admin"
           labelIfUnchecked="Activer le mode admin"
           onToggle={displayToastNotif}
         />
+
         <Profile />
         <ToastAdmin />
-      </div>
+      </NavbarRightSideStyled>
     </>
   );
 }
+
+const NavbarRightSideStyled = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: ${theme.medias.md}) {
+    width: 100%;
+    margin-top: 0.5rem;
+    justify-content: space-between;
+  }
+`;
