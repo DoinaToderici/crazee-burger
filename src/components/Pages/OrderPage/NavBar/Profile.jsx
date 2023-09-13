@@ -1,12 +1,23 @@
-import { useContext } from "react";
-import { BsPersonCircle } from "react-icons/bs";
+import { useContext, useState } from "react";
+import { BsBasketFill, BsPersonCircle } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../../theme/index";
 import AdminContext from "../../../Context/AdminContext";
 
 export default function Profile() {
-  const { setIsModeAdmin, username } = useContext(AdminContext);
+  const { setIsModeAdmin, username, handleToggleBasket, basket } =
+    useContext(AdminContext);
+
+  const allQuantitys = basket.map((item) => {
+    return item.quantity;
+  });
+
+  const totalQuantity = allQuantitys.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+
   return (
     <ProfileStyled>
       <div className="info">
@@ -21,6 +32,11 @@ export default function Profile() {
       </div>
       <div className="picture">
         <BsPersonCircle />
+      </div>
+
+      <div className="button-basket-mobile">
+        {totalQuantity > 0 && <span>{totalQuantity}</span>}
+        <BsBasketFill className="icon" onClick={handleToggleBasket} />
       </div>
     </ProfileStyled>
   );
@@ -89,6 +105,36 @@ const ProfileStyled = styled.div`
 
     @media (max-width: ${theme.medias.sm}) {
       font-size: 1.5rem;
+    }
+  }
+
+  .button-basket-mobile {
+    margin-left: 10px;
+    display: none;
+    position: relative;
+
+    @media (max-width: ${theme.medias.sm}) {
+      display: block;
+    }
+
+    .icon {
+      font-size: ${theme.fonts.size.P2};
+      color: ${theme.colors.primary};
+    }
+
+    span {
+      position: absolute;
+      padding: 2px;
+      border-radius: 50px;
+      color: ${theme.colors.white};
+      background: ${theme.colors.green};
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+      text-align: center;
+      right: -8px;
+      top: -5px;
+      line-height: 1.4;
     }
   }
 `;

@@ -38,6 +38,7 @@ export default function OrderPage() {
     visibleBasket,
     setVisibleBasket,
     handleToggleBasket,
+    totalQuantity,
   } = useBasket();
   const { username } = useParams();
 
@@ -90,6 +91,7 @@ export default function OrderPage() {
     visibleBasket,
     setVisibleBasket,
     handleToggleBasket,
+    totalQuantity,
   };
 
   return (
