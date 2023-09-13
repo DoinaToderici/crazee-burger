@@ -11,6 +11,7 @@ import { setLocalStorage } from "../utils/window";
 export const useBasket = () => {
   const [basket, setBasket] = useState([]);
   const { username } = useParams();
+  const [visibleBasket, setVisibleBasket] = useState(false);
 
   const handleAddToBasket = (idProductToAdd) => {
     const copyBasket = deepClone(basket);
@@ -46,5 +47,17 @@ export const useBasket = () => {
     setBasket(arrayWithoutDeletedProduct);
   };
 
-  return { basket, setBasket, handleAddToBasket, handleDeleteBasketProduct };
+  const handleToggleBasket = () => {
+    setVisibleBasket(true);
+  };
+
+  return {
+    basket,
+    setBasket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    visibleBasket,
+    setVisibleBasket,
+    handleToggleBasket,
+  };
 };
