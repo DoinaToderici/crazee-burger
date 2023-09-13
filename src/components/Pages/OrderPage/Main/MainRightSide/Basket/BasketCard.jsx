@@ -57,7 +57,7 @@ const BasketCardStyled = styled.div`
   position: relative;
 
   @media (max-width: ${theme.medias.md}) {
-    padding: 5px 0;
+    padding: 5px;
   }
 
   .image {

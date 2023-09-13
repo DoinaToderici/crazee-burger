@@ -21,6 +21,7 @@ const CasinoEffectStyled = styled.div`
 
   span {
     display: inline-block;
+    white-space: nowrap;
   }
 
   // MOUNTING

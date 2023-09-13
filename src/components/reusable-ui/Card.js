@@ -94,14 +94,12 @@ const CardStyled = styled.div`
       animation: ${fadeInFromRight} 0.5s ease-out;
 
       .icon {
-        /* border: 1px solid blue; */
         height: 100%;
         width: 100%;
       }
 
       :hover {
         color: ${theme.colors.red};
-        /* background-color: red; */
       }
 
       :active {

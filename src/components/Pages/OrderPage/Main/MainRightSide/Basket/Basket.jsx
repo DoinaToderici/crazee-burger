@@ -4,22 +4,13 @@ import BasketBody from "./BodyBasket";
 import Footer from "./Footer";
 import Total from "./Total";
 import { theme } from "../../../../../../theme";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import AdminContext from "../../../../../Context/AdminContext";
 
 export default function Basket() {
-  const { visibleBasket, setVisibleBasket } = useContext(AdminContext);
-
-  const handleCloseBasket = () => {
-    setVisibleBasket(false);
-  };
+  const { visibleBasket } = useContext(AdminContext);
 
   return (
     <BasketStyled className={visibleBasket ? "show-basket" : "hide-basket"}>
-      <AiOutlineCloseCircle
-        className="close-basket"
-        onClick={handleCloseBasket}
-      />
       <Total />
       <BasketBody />
       <Footer />
@@ -35,15 +26,8 @@ const BasketStyled = styled.div`
   height: 85vh;
   overflow: hidden;
 
-  .close-basket {
-    display: none;
-    position: absolute;
-    color: yellow;
-    display: none;
-
-    @media (max-width: ${theme.medias.sm}) {
-      display: block;
-    }
+  @media (max-width: ${theme.medias.md}) {
+    height: 77vh;
   }
 
   @media (max-width: ${theme.medias.sm}) {
